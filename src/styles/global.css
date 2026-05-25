@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --color-apple-bg: #fbfbfd;
+  --color-apple-text: #1d1d1f;
+  --color-apple-text-muted: #6e6e73;
+  --color-apple-accent: #0071e3;
+  --color-apple-border: #d2d2d7;
+  --color-apple-surface: #f5f5f7;
+}
+
+body {
+  @apply bg-apple-bg text-apple-text font-sans antialiased selection:bg-apple-accent selection:text-white;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism — light frosted glass */
+.glass-panel {
+  @apply bg-white/70 backdrop-blur-2xl border border-black/[0.06] rounded-3xl p-10 shadow-[0_2px_40px_rgba(0,0,0,0.04)];
+}
+
+/* Typography styles */
+h1 {
+  @apply text-5xl md:text-7xl font-semibold tracking-tight text-apple-text mb-6;
+}
+
+h2 {
+  @apply text-3xl md:text-5xl font-semibold tracking-tight text-apple-text mb-6;
+}
+
+h3 {
+  @apply text-2xl font-medium tracking-tight text-apple-text mb-4;
+}
+
+p {
+  @apply text-xl text-apple-text-muted leading-relaxed mb-6 max-w-3xl font-light;
+}
+
+/* Scroll snap containers */
+.scroll-section {
+  @apply min-h-[100svh] flex items-center justify-start w-full relative z-10 px-8 md:px-24 py-32;
+}
+
+/* Add huge padding at the end so we can scroll smoothly */
+main {
+  padding-bottom: 20vh;
+}

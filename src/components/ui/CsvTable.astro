@@ -1,0 +1,70 @@
+---
+import fs from 'fs';
+import path from 'path';
+import Papa from 'papaparse';
+
+export interface Props {
+  csvPath: string;
+  scrollable?: boolean;
+}
+
+const { csvPath, scrollable = false } = Astro.props;
+const absolutePath = path.join(process.cwd(), csvPath);
+
+let data: any[] = [];
+let headers: string[] = [];
+
+try {
+  const fileContent = fs.readFileSync(absolutePath, 'utf-8');
+  const result = Papa.parse(fileContent, { header: true, skipEmptyLines: true });
+  data = result.data;
+  if (data.length > 0) {
+    headers = Object.keys(data[0]);
+  }
+} catch (e) {
+  console.error(`Error reading CSV at ${absolutePath}`, e);
+}
+
+const wrapperClass = scrollable
+  ? 'overflow-hidden my-6 rounded-2xl border border-apple-border bg-white shadow-sm'
+  : 'overflow-x-auto my-6 rounded-2xl border border-apple-border bg-white shadow-sm';
+
+const bodyClass = scrollable
+  ? 'max-h-[400px] overflow-y-auto'
+  : '';
+---
+
+<div class={wrapperClass}>
+  <table class="w-full text-left text-sm text-apple-text-muted">
+    <thead class={`text-xs uppercase bg-apple-surface text-apple-text-muted border-b border-apple-border ${scrollable ? 'sticky top-0 z-10' : ''}`}>
+      <tr>
+        {headers.map(header => (
+          <th scope="col" class="px-6 py-4 font-semibold tracking-wider">{header}</th>
+        ))}
+      </tr>
+    </thead>
+  </table>
+  <div class={bodyClass}>
+    <table class="w-full text-left text-sm text-apple-text-muted">
+      {/* Hidden header to keep column widths in sync for scrollable mode */}
+      <thead class="invisible h-0">
+        <tr>
+          {headers.map(header => (
+            <th scope="col" class="px-6 py-0">{header}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((row, i) => (
+          <tr class={i !== data.length - 1 ? 'border-b border-apple-border/50' : ''}>
+            {headers.map(header => (
+              <td class="px-6 py-3.5 whitespace-nowrap text-apple-text text-sm">
+                {row[header]}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -33,6 +33,28 @@ function processGraphML() {
     const nodes = [];
     const links = [];
 
+    // Build key-id → attr-name map from <key> definitions
+    const keyDefs = parsed.graphml?.key;
+    const keyMap = {};
+    if (keyDefs) {
+        const keys = Array.isArray(keyDefs) ? keyDefs : [keyDefs];
+        for (const k of keys) {
+            keyMap[k['@_id']] = k['@_attr.name'];
+        }
+    }
+
+    // Helper: extract data elements into a flat object keyed by attr name
+    function extractData(dataElems) {
+        const result = {};
+        if (!dataElems) return result;
+        const arr = Array.isArray(dataElems) ? dataElems : [dataElems];
+        for (const d of arr) {
+            const attrName = keyMap[d['@_key']] || d['@_key'];
+            result[attrName] = d['#text'] ?? '';
+        }
+        return result;
+    }
+
     // Navigate to the graph element (assuming standard GraphML structure)
     const graph = parsed.graphml?.graph;
     if (graph) {
@@ -40,16 +62,21 @@ function processGraphML() {
         const rawEdges = Array.isArray(graph.edge) ? graph.edge : [graph.edge].filter(Boolean);
 
         for (const node of rawNodes) {
+            const attrs = extractData(node.data);
             nodes.push({
                 id: node['@_id'],
-                label: `Node ${node['@_id']}`
+                label: `Node ${node['@_id']}`,
+                type1: attrs.type1 || 'Unknown',
+                type2: attrs.type2 || 'Unknown',
             });
         }
 
         for (const edge of rawEdges) {
+            const attrs = extractData(edge.data);
             links.push({
                 source: edge['@_source'],
-                target: edge['@_target']
+                target: edge['@_target'],
+                weight: parseFloat(attrs.weight) || 1,
             });
         }
     }

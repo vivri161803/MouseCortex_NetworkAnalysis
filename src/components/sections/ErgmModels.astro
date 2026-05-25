@@ -1,0 +1,146 @@
+---
+import CsvTable from '../ui/CsvTable.astro';
+import PdfEmbed from '../ui/PdfEmbed.astro';
+import InterpretationBlock from '../ui/InterpretationBlock.astro';
+import { CONFIG } from '../../config';
+import fs from 'fs';
+import path from 'path';
+import Papa from 'papaparse';
+
+// Read the model selection CSV and enrich with formula column
+const csvPath = path.join(process.cwd(), CONFIG.contentPaths.csv.ergmModelSelection);
+let modelData: any[] = [];
+let modelHeaders: string[] = [];
+
+const MODEL_FORMULAS: Record<string, string> = {
+  M0: 'edges',
+  M1: 'edges + nodefactor(type1)',
+  M2: 'edges + nodematch(type1)',
+  M3: 'edges + nodematch(type1) + nodematch(type2)',
+  M4: 'edges + gwidegree(0.5)',
+  M5: 'edges + gwesp(0.5, type="OTP")',
+  M6: 'edges + nodematch(type1) + nodematch(type2) + gwidegree(0.5) + gwesp(0.5, type="OTP")',
+};
+
+try {
+  const fileContent = fs.readFileSync(csvPath, 'utf-8');
+  const result = Papa.parse(fileContent, { header: true, skipEmptyLines: true });
+  modelData = result.data.map((row: any) => ({
+    ...row,
+    Formula: MODEL_FORMULAS[row.Modello] || '—',
+  }));
+  if (modelData.length > 0) {
+    // Reorder headers: Modello, Formula, AIC, BIC
+    const origHeaders = Object.keys(result.data[0]);
+    modelHeaders = [origHeaders[0], 'Formula', ...origHeaders.slice(1)];
+  }
+} catch (e) {
+  console.error('Error reading ERGM model selection CSV', e);
+}
+---
+<section id="ergm" class="scroll-section">
+  <div class="glass-panel max-w-5xl w-full">
+    <h2>ERGM Models Analysis</h2>
+    <p>
+      Exponential Random Graph Models (ERGMs) allow us to understand the local mechanisms that give rise to the global network structure. We evaluated several models based on different network motifs.
+    </p>
+
+    <!-- Model Selection Table (enriched with Formula column) -->
+    <h3 class="mt-8">Model Selection</h3>
+    <div class="overflow-x-auto my-6 rounded-2xl border border-apple-border bg-white shadow-sm">
+      <table class="w-full text-left text-sm text-apple-text-muted">
+        <thead class="text-xs uppercase bg-apple-surface text-apple-text-muted border-b border-apple-border">
+          <tr>
+            {modelHeaders.map(header => (
+              <th scope="col" class="px-6 py-4 font-semibold tracking-wider">{header}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {modelData.map((row, i) => (
+            <tr class={`${i !== modelData.length - 1 ? 'border-b border-apple-border/50' : ''} ${row.Modello === 'M6' ? 'bg-apple-accent/[0.04] font-medium' : ''}`}>
+              {modelHeaders.map(header => (
+                <td class={`px-6 py-3.5 text-sm ${header === 'Formula' ? 'font-mono text-xs text-apple-text-muted' : 'text-apple-text'}`}>
+                  {header === 'AIC' || header === 'BIC' ? Number(row[header]).toFixed(1) : row[header]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <InterpretationBlock title="Model Ranking">
+      <p><strong>M6 is the best model (BIC = 2017):</strong> It combines both biological attributes (<code>nodematch</code> on type1 and type2) and structural topology (<code>gwidegree</code> and <code>gwesp</code>). The key to its superiority is <code>gwidegree</code>: since the network has an extremely asymmetric in-degree structure (dominant sinks), this structural term models the network skeleton almost perfectly.</p>
+      <p><strong>M1 in second place (BIC = 2062):</strong> <code>edges + nodefactor(type1)</code>. The addition of <code>nodefactor</code> lets the model understand that different neuron types have completely different traffic volumes (e.g., pyramidal neurons are hyper-active).</p>
+      <p><strong>M3 (BIC = 2231) &amp; M2 (BIC = 2380):</strong> Homophily terms (<code>nodematch</code>) improve the base model but perform worse than M1 because, as we saw, global assortativity is nearly zero — neurons don't preferentially connect to same-type neurons.</p>
+      <p><strong>M0 (BIC = 2652):</strong> The null model (Erdős-Rényi). Pure random edge generation — serves only as the baseline.</p>
+      <p><strong>M5 is the worst (BIC = 2659):</strong> Worse than random! It tries to explain the network via triangle closure (<code>gwesp</code>), but global transitivity is nearly zero (0.0047). Forcing the algorithm to find triangle-based patterns in a triangle-free network produces a terrible fit.</p>
+    </InterpretationBlock>
+
+    <!-- Best Model Coefficients -->
+    <h3 class="mt-12">Best Model Coefficients (M6)</h3>
+    <CsvTable csvPath={CONFIG.contentPaths.csv.ergmCoefficients} />
+
+    <InterpretationBlock title="Coefficient Interpretation">
+      <p><strong><code>edges</code> (OR = 0.0005):</strong> The base propensity to form edges is infinitesimal (0.05%), faithfully reflecting the extreme sparsity of the network.</p>
+      <p><strong><code>nodematch.type1</code> (OR = 0.024) &amp; <code>nodematch.type2</code> (OR = 0.038):</strong> Surprisingly, homophily has a <em>strongly negative</em> effect (OR &lt; 1). Neurons are biologically <em>reluctant</em> to connect to same-type neurons. The network is characterized by <strong>heterophily</strong>: excitatory pyramidal neurons prefer connecting to inhibitory targets or dendrites, not to other pyramidal cells!</p>
+      <p><strong><code>gwideg</code> (OR = 576.4):</strong> The structural in-degree effect is explosive — indicating an immense tendency to create degree asymmetries ("star" structures) where a few nodes channel enormous flows compared to the average. These nodes correspond to pyramidal neurons that receive a disproportionate number of synapses, acting as integration hubs.</p>
+      <p><strong><code>gwesp</code> (OR = 9.66):</strong> Despite near-zero global transitivity, controlling for degree disparity, if two neurons already share a partner, they have ~10× higher odds of forming a direct arc. This signals the presence of rare but intense local micro-circuits (triangles) hidden in the volume.</p>
+    </InterpretationBlock>
+
+    <!-- Goodness of Fit -->
+    <div class="mt-12">
+      <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.gofPlots} title="Goodness of Fit (Best Model M6)" />
+    </div>
+
+    <InterpretationBlock title="GoF Interpretation">
+      <p>The thick solid lines represent metrics from the <strong>real network</strong>, while the boxplots show values from hundreds of <strong>simulated networks</strong> generated by model M6. When the solid line falls within or very close to the boxplots, it means the model faithfully replicates the biological process.</p>
+      <p>You'll notice an excellent fit for the <strong>In-Degree and Out-Degree distributions</strong>: the model perfectly learned to simulate the "star" topology and pyramidal hubs thanks to the <code>gwideg</code> term.</p>
+      <p>In the <strong>Edgewise Shared Partners (ESP)</strong> and <strong>geodesic distances</strong> plots, you'll see a huge initial spike followed by null values — demonstrating that almost no edges share partners (no triangles) and paths through the network are either very short (1-2 hops) or impossible, faithfully replicating the extreme sparsity of the analyzed neural tissue.</p>
+    </InterpretationBlock>
+
+    <!-- MCMC Diagnostics -->
+    <div class="mt-12">
+      <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.mcmcDiagnostics} title="MCMC Diagnostics" />
+    </div>
+
+    <InterpretationBlock title="MCMC Convergence">
+      <p>The Markov Chain traces should resemble stationary "white noise" distributed normally around zero (the classic "hairy caterpillar" pattern). If the lines fluctuate for too long without stabilizing, the model suffers from mixing problems (degeneration). Well-behaved traces confirm the ERGM parameter estimates are reliable.</p>
+    </InterpretationBlock>
+
+    <!-- ERGM Feature Glossary -->
+    <h3 class="mt-16">ERGM Feature Glossary</h3>
+    <div class="rounded-2xl border border-apple-border bg-white shadow-sm p-6 md:p-8 space-y-5">
+      <div>
+        <h4 class="text-sm font-semibold text-apple-text uppercase tracking-wider mb-1"><code>edges</code></h4>
+        <p class="text-sm text-apple-text-muted mb-0">The baseline term — analogous to the intercept in linear regression. Its coefficient controls the overall density of the network (probability of any edge existing).</p>
+      </div>
+      <hr class="border-apple-border/50" />
+      <div>
+        <h4 class="text-sm font-semibold text-apple-text uppercase tracking-wider mb-1"><code>nodematch(attr)</code></h4>
+        <p class="text-sm text-apple-text-muted mb-0">Tests <strong>homophily</strong>: are edges more likely between nodes sharing the same value of attribute <code>attr</code>? A positive coefficient = homophily (same-type preference); negative = <strong>heterophily</strong> (cross-type preference).</p>
+      </div>
+      <hr class="border-apple-border/50" />
+      <div>
+        <h4 class="text-sm font-semibold text-apple-text uppercase tracking-wider mb-1"><code>nodefactor(attr)</code></h4>
+        <p class="text-sm text-apple-text-muted mb-0">Controls <strong>activity volume</strong> per category: "Do neurons of type X tend to have more (or fewer) connections in general?" It introduces one virtual column per category level, with a coefficient indicating each type's baseline connection propensity.</p>
+      </div>
+      <hr class="border-apple-border/50" />
+      <div>
+        <h4 class="text-sm font-semibold text-apple-text uppercase tracking-wider mb-1"><code>gwidegree(decay)</code></h4>
+        <p class="text-sm text-apple-text-muted mb-0"><strong>Geometrically Weighted In-Degree</strong>: captures the degree distribution shape. A positive coefficient indicates the network tends to form <strong>degree asymmetries</strong> (star structures / hubs). The <code>decay</code> parameter controls how much additional connections are discounted (higher decay = connections beyond the first matter less). Essential for modeling networks with skewed degree distributions.</p>
+      </div>
+      <hr class="border-apple-border/50" />
+      <div>
+        <h4 class="text-sm font-semibold text-apple-text uppercase tracking-wider mb-1"><code>gwesp(decay, type)</code></h4>
+        <p class="text-sm text-apple-text-muted mb-0"><strong>Geometrically Weighted Edgewise Shared Partners</strong>: captures the tendency toward <strong>transitive closure</strong> (triangle formation). A positive coefficient means edges with shared partners tend to cluster. <code>type="OTP"</code> specifies Outgoing Two-Path transitivity, appropriate for directed networks. The <code>decay</code> controls the diminishing returns of additional shared partners.</p>
+      </div>
+      <hr class="border-apple-border/50" />
+      <div>
+        <h4 class="text-sm font-semibold text-apple-text uppercase tracking-wider mb-1">Reading Odds Ratios (OR)</h4>
+        <p class="text-sm text-apple-text-muted mb-0">The Odds Ratio = <code>exp(coefficient)</code>. An OR of <strong>1</strong> means no effect; <strong>&gt;1</strong> increases edge probability; <strong>&lt;1</strong> decreases it. For example, OR = 576 for <code>gwideg</code> means the network has a massive structural tendency toward in-degree hubs.</p>
+      </div>
+    </div>
+  </div>
+</section>

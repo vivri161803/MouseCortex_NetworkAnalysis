@@ -2,1641 +2,2245 @@
   "nodes": [
     {
       "id": "n0",
-      "label": "Node n0"
+      "label": "Node n0",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n1",
-      "label": "Node n1"
+      "label": "Node n1",
+      "type1": "Dendritic fragment",
+      "type2": "NA"
     },
     {
       "id": "n2",
-      "label": "Node n2"
+      "label": "Node n2",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n3",
-      "label": "Node n3"
+      "label": "Node n3",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n4",
-      "label": "Node n4"
+      "label": "Node n4",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n5",
-      "label": "Node n5"
+      "label": "Node n5",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n6",
-      "label": "Node n6"
+      "label": "Node n6",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n7",
-      "label": "Node n7"
+      "label": "Node n7",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n8",
-      "label": "Node n8"
+      "label": "Node n8",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n9",
-      "label": "Node n9"
+      "label": "Node n9",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n10",
-      "label": "Node n10"
+      "label": "Node n10",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n11",
-      "label": "Node n11"
+      "label": "Node n11",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n12",
-      "label": "Node n12"
+      "label": "Node n12",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n13",
-      "label": "Node n13"
+      "label": "Node n13",
+      "type1": "Characterized pyramidal neuron",
+      "type2": "NA"
     },
     {
       "id": "n14",
-      "label": "Node n14"
+      "label": "Node n14",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n15",
-      "label": "Node n15"
+      "label": "Node n15",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n16",
-      "label": "Node n16"
+      "label": "Node n16",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n17",
-      "label": "Node n17"
+      "label": "Node n17",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n18",
-      "label": "Node n18"
+      "label": "Node n18",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n19",
-      "label": "Node n19"
+      "label": "Node n19",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n20",
-      "label": "Node n20"
+      "label": "Node n20",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n21",
-      "label": "Node n21"
+      "label": "Node n21",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n22",
-      "label": "Node n22"
+      "label": "Node n22",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n23",
-      "label": "Node n23"
+      "label": "Node n23",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n24",
-      "label": "Node n24"
+      "label": "Node n24",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n25",
-      "label": "Node n25"
+      "label": "Node n25",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n26",
-      "label": "Node n26"
+      "label": "Node n26",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n27",
-      "label": "Node n27"
+      "label": "Node n27",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n28",
-      "label": "Node n28"
+      "label": "Node n28",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n29",
-      "label": "Node n29"
+      "label": "Node n29",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n30",
-      "label": "Node n30"
+      "label": "Node n30",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n31",
-      "label": "Node n31"
+      "label": "Node n31",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n32",
-      "label": "Node n32"
+      "label": "Node n32",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n33",
-      "label": "Node n33"
+      "label": "Node n33",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n34",
-      "label": "Node n34"
+      "label": "Node n34",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n35",
-      "label": "Node n35"
+      "label": "Node n35",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n36",
-      "label": "Node n36"
+      "label": "Node n36",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n37",
-      "label": "Node n37"
+      "label": "Node n37",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n38",
-      "label": "Node n38"
+      "label": "Node n38",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n39",
-      "label": "Node n39"
+      "label": "Node n39",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n40",
-      "label": "Node n40"
+      "label": "Node n40",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n41",
-      "label": "Node n41"
+      "label": "Node n41",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n42",
-      "label": "Node n42"
+      "label": "Node n42",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n43",
-      "label": "Node n43"
+      "label": "Node n43",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n44",
-      "label": "Node n44"
+      "label": "Node n44",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n45",
-      "label": "Node n45"
+      "label": "Node n45",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n46",
-      "label": "Node n46"
+      "label": "Node n46",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n47",
-      "label": "Node n47"
+      "label": "Node n47",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n48",
-      "label": "Node n48"
+      "label": "Node n48",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n49",
-      "label": "Node n49"
+      "label": "Node n49",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n50",
-      "label": "Node n50"
+      "label": "Node n50",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n51",
-      "label": "Node n51"
+      "label": "Node n51",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n52",
-      "label": "Node n52"
+      "label": "Node n52",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n53",
-      "label": "Node n53"
+      "label": "Node n53",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n54",
-      "label": "Node n54"
+      "label": "Node n54",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n55",
-      "label": "Node n55"
+      "label": "Node n55",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n56",
-      "label": "Node n56"
+      "label": "Node n56",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n57",
-      "label": "Node n57"
+      "label": "Node n57",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n58",
-      "label": "Node n58"
+      "label": "Node n58",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n59",
-      "label": "Node n59"
+      "label": "Node n59",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n60",
-      "label": "Node n60"
+      "label": "Node n60",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n61",
-      "label": "Node n61"
+      "label": "Node n61",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n62",
-      "label": "Node n62"
+      "label": "Node n62",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n63",
-      "label": "Node n63"
+      "label": "Node n63",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n64",
-      "label": "Node n64"
+      "label": "Node n64",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n65",
-      "label": "Node n65"
+      "label": "Node n65",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n66",
-      "label": "Node n66"
+      "label": "Node n66",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n67",
-      "label": "Node n67"
+      "label": "Node n67",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n68",
-      "label": "Node n68"
+      "label": "Node n68",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n69",
-      "label": "Node n69"
+      "label": "Node n69",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n70",
-      "label": "Node n70"
+      "label": "Node n70",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n71",
-      "label": "Node n71"
+      "label": "Node n71",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n72",
-      "label": "Node n72"
+      "label": "Node n72",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n73",
-      "label": "Node n73"
+      "label": "Node n73",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n74",
-      "label": "Node n74"
+      "label": "Node n74",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n75",
-      "label": "Node n75"
+      "label": "Node n75",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n76",
-      "label": "Node n76"
+      "label": "Node n76",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n77",
-      "label": "Node n77"
+      "label": "Node n77",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n78",
-      "label": "Node n78"
+      "label": "Node n78",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n79",
-      "label": "Node n79"
+      "label": "Node n79",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n80",
-      "label": "Node n80"
+      "label": "Node n80",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n81",
-      "label": "Node n81"
+      "label": "Node n81",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n82",
-      "label": "Node n82"
+      "label": "Node n82",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n83",
-      "label": "Node n83"
+      "label": "Node n83",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n84",
-      "label": "Node n84"
+      "label": "Node n84",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n85",
-      "label": "Node n85"
+      "label": "Node n85",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n86",
-      "label": "Node n86"
+      "label": "Node n86",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n87",
-      "label": "Node n87"
+      "label": "Node n87",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n88",
-      "label": "Node n88"
+      "label": "Node n88",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n89",
-      "label": "Node n89"
+      "label": "Node n89",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n90",
-      "label": "Node n90"
+      "label": "Node n90",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n91",
-      "label": "Node n91"
+      "label": "Node n91",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n92",
-      "label": "Node n92"
+      "label": "Node n92",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n93",
-      "label": "Node n93"
+      "label": "Node n93",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n94",
-      "label": "Node n94"
+      "label": "Node n94",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n95",
-      "label": "Node n95"
+      "label": "Node n95",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n96",
-      "label": "Node n96"
+      "label": "Node n96",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n97",
-      "label": "Node n97"
+      "label": "Node n97",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n98",
-      "label": "Node n98"
+      "label": "Node n98",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n99",
-      "label": "Node n99"
+      "label": "Node n99",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n100",
-      "label": "Node n100"
+      "label": "Node n100",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n101",
-      "label": "Node n101"
+      "label": "Node n101",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n102",
-      "label": "Node n102"
+      "label": "Node n102",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n103",
-      "label": "Node n103"
+      "label": "Node n103",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n104",
-      "label": "Node n104"
+      "label": "Node n104",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n105",
-      "label": "Node n105"
+      "label": "Node n105",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n106",
-      "label": "Node n106"
+      "label": "Node n106",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n107",
-      "label": "Node n107"
+      "label": "Node n107",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n108",
-      "label": "Node n108"
+      "label": "Node n108",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n109",
-      "label": "Node n109"
+      "label": "Node n109",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n110",
-      "label": "Node n110"
+      "label": "Node n110",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n111",
-      "label": "Node n111"
+      "label": "Node n111",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n112",
-      "label": "Node n112"
+      "label": "Node n112",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n113",
-      "label": "Node n113"
+      "label": "Node n113",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n114",
-      "label": "Node n114"
+      "label": "Node n114",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n115",
-      "label": "Node n115"
+      "label": "Node n115",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n116",
-      "label": "Node n116"
+      "label": "Node n116",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n117",
-      "label": "Node n117"
+      "label": "Node n117",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n118",
-      "label": "Node n118"
+      "label": "Node n118",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n119",
-      "label": "Node n119"
+      "label": "Node n119",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n120",
-      "label": "Node n120"
+      "label": "Node n120",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n121",
-      "label": "Node n121"
+      "label": "Node n121",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n122",
-      "label": "Node n122"
+      "label": "Node n122",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n123",
-      "label": "Node n123"
+      "label": "Node n123",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n124",
-      "label": "Node n124"
+      "label": "Node n124",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n125",
-      "label": "Node n125"
+      "label": "Node n125",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n126",
-      "label": "Node n126"
+      "label": "Node n126",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n127",
-      "label": "Node n127"
+      "label": "Node n127",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n128",
-      "label": "Node n128"
+      "label": "Node n128",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n129",
-      "label": "Node n129"
+      "label": "Node n129",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n130",
-      "label": "Node n130"
+      "label": "Node n130",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n131",
-      "label": "Node n131"
+      "label": "Node n131",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n132",
-      "label": "Node n132"
+      "label": "Node n132",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n133",
-      "label": "Node n133"
+      "label": "Node n133",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n134",
-      "label": "Node n134"
+      "label": "Node n134",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n135",
-      "label": "Node n135"
+      "label": "Node n135",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n136",
-      "label": "Node n136"
+      "label": "Node n136",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n137",
-      "label": "Node n137"
+      "label": "Node n137",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n138",
-      "label": "Node n138"
+      "label": "Node n138",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n139",
-      "label": "Node n139"
+      "label": "Node n139",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n140",
-      "label": "Node n140"
+      "label": "Node n140",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n141",
-      "label": "Node n141"
+      "label": "Node n141",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n142",
-      "label": "Node n142"
+      "label": "Node n142",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n143",
-      "label": "Node n143"
+      "label": "Node n143",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n144",
-      "label": "Node n144"
+      "label": "Node n144",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n145",
-      "label": "Node n145"
+      "label": "Node n145",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n146",
-      "label": "Node n146"
+      "label": "Node n146",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n147",
-      "label": "Node n147"
+      "label": "Node n147",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n148",
-      "label": "Node n148"
+      "label": "Node n148",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n149",
-      "label": "Node n149"
+      "label": "Node n149",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n150",
-      "label": "Node n150"
+      "label": "Node n150",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n151",
-      "label": "Node n151"
+      "label": "Node n151",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n152",
-      "label": "Node n152"
+      "label": "Node n152",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n153",
-      "label": "Node n153"
+      "label": "Node n153",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n154",
-      "label": "Node n154"
+      "label": "Node n154",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n155",
-      "label": "Node n155"
+      "label": "Node n155",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n156",
-      "label": "Node n156"
+      "label": "Node n156",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n157",
-      "label": "Node n157"
+      "label": "Node n157",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n158",
-      "label": "Node n158"
+      "label": "Node n158",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n159",
-      "label": "Node n159"
+      "label": "Node n159",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n160",
-      "label": "Node n160"
+      "label": "Node n160",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n161",
-      "label": "Node n161"
+      "label": "Node n161",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n162",
-      "label": "Node n162"
+      "label": "Node n162",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n163",
-      "label": "Node n163"
+      "label": "Node n163",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n164",
-      "label": "Node n164"
+      "label": "Node n164",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n165",
-      "label": "Node n165"
+      "label": "Node n165",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n166",
-      "label": "Node n166"
+      "label": "Node n166",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n167",
-      "label": "Node n167"
+      "label": "Node n167",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n168",
-      "label": "Node n168"
+      "label": "Node n168",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n169",
-      "label": "Node n169"
+      "label": "Node n169",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n170",
-      "label": "Node n170"
+      "label": "Node n170",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n171",
-      "label": "Node n171"
+      "label": "Node n171",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n172",
-      "label": "Node n172"
+      "label": "Node n172",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n173",
-      "label": "Node n173"
+      "label": "Node n173",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n174",
-      "label": "Node n174"
+      "label": "Node n174",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n175",
-      "label": "Node n175"
+      "label": "Node n175",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n176",
-      "label": "Node n176"
+      "label": "Node n176",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n177",
-      "label": "Node n177"
+      "label": "Node n177",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n178",
-      "label": "Node n178"
+      "label": "Node n178",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n179",
-      "label": "Node n179"
+      "label": "Node n179",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n180",
-      "label": "Node n180"
+      "label": "Node n180",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n181",
-      "label": "Node n181"
+      "label": "Node n181",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n182",
-      "label": "Node n182"
+      "label": "Node n182",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n183",
-      "label": "Node n183"
+      "label": "Node n183",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n184",
-      "label": "Node n184"
+      "label": "Node n184",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n185",
-      "label": "Node n185"
+      "label": "Node n185",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n186",
-      "label": "Node n186"
+      "label": "Node n186",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n187",
-      "label": "Node n187"
+      "label": "Node n187",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n188",
-      "label": "Node n188"
+      "label": "Node n188",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n189",
-      "label": "Node n189"
+      "label": "Node n189",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     },
     {
       "id": "n190",
-      "label": "Node n190"
+      "label": "Node n190",
+      "type1": "Cell body in EM volume",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n191",
-      "label": "Node n191"
+      "label": "Node n191",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n192",
-      "label": "Node n192"
+      "label": "Node n192",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n193",
-      "label": "Node n193"
+      "label": "Node n193",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic excitatory target"
     },
     {
       "id": "n194",
-      "label": "Node n194"
+      "label": "Node n194",
+      "type1": "Dendritic fragment",
+      "type2": "Postsynaptic inhibitory target"
     }
   ],
   "links": [
     {
       "source": "n1",
-      "target": "n14"
+      "target": "n14",
+      "weight": 3
     },
     {
       "source": "n1",
-      "target": "n15"
+      "target": "n15",
+      "weight": 1
     },
     {
       "source": "n1",
-      "target": "n16"
+      "target": "n16",
+      "weight": 1
     },
     {
       "source": "n1",
-      "target": "n17"
+      "target": "n17",
+      "weight": 1
     },
     {
       "source": "n1",
-      "target": "n18"
+      "target": "n18",
+      "weight": 1
     },
     {
       "source": "n1",
-      "target": "n4"
+      "target": "n4",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n152"
+      "target": "n152",
+      "weight": 2
     },
     {
       "source": "n2",
-      "target": "n153"
+      "target": "n153",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n154"
+      "target": "n154",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n155"
+      "target": "n155",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n156"
+      "target": "n156",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n157"
+      "target": "n157",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n158"
+      "target": "n158",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n159"
+      "target": "n159",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n160"
+      "target": "n160",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n161"
+      "target": "n161",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n162"
+      "target": "n162",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n163"
+      "target": "n163",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n164"
+      "target": "n164",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n165"
+      "target": "n165",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n166"
+      "target": "n166",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n167"
+      "target": "n167",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n168"
+      "target": "n168",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n169"
+      "target": "n169",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n170"
+      "target": "n170",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n171"
+      "target": "n171",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n172"
+      "target": "n172",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n173"
+      "target": "n173",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n174"
+      "target": "n174",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n175"
+      "target": "n175",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n176"
+      "target": "n176",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n177"
+      "target": "n177",
+      "weight": 2
     },
     {
       "source": "n2",
-      "target": "n184"
+      "target": "n184",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n185"
+      "target": "n185",
+      "weight": 1
     },
     {
       "source": "n2",
-      "target": "n7"
+      "target": "n7",
+      "weight": 2
     },
     {
       "source": "n2",
-      "target": "n82"
+      "target": "n82",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n176"
+      "target": "n176",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n177"
+      "target": "n177",
+      "weight": 2
     },
     {
       "source": "n3",
-      "target": "n178"
+      "target": "n178",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n179"
+      "target": "n179",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n180"
+      "target": "n180",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n181"
+      "target": "n181",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n182"
+      "target": "n182",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n183"
+      "target": "n183",
+      "weight": 1
     },
     {
       "source": "n3",
-      "target": "n102"
+      "target": "n102",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n36"
+      "target": "n36",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n37"
+      "target": "n37",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n38"
+      "target": "n38",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n39"
+      "target": "n39",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n40"
+      "target": "n40",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n41"
+      "target": "n41",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n42"
+      "target": "n42",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n43"
+      "target": "n43",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n44"
+      "target": "n44",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n45"
+      "target": "n45",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n46"
+      "target": "n46",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n47"
+      "target": "n47",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n48"
+      "target": "n48",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n49"
+      "target": "n49",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n50"
+      "target": "n50",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n51"
+      "target": "n51",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n52"
+      "target": "n52",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n53"
+      "target": "n53",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n54"
+      "target": "n54",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n55"
+      "target": "n55",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n56"
+      "target": "n56",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n57"
+      "target": "n57",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n58"
+      "target": "n58",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n59"
+      "target": "n59",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n60"
+      "target": "n60",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n82"
+      "target": "n82",
+      "weight": 6
     },
     {
       "source": "n5",
-      "target": "n1"
+      "target": "n1",
+      "weight": 1
     },
     {
       "source": "n5",
-      "target": "n102"
+      "target": "n102",
+      "weight": 2
     },
     {
       "source": "n6",
-      "target": "n59"
+      "target": "n59",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n60"
+      "target": "n60",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n61"
+      "target": "n61",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n62"
+      "target": "n62",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n63"
+      "target": "n63",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n64"
+      "target": "n64",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n65"
+      "target": "n65",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n66"
+      "target": "n66",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n67"
+      "target": "n67",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n68"
+      "target": "n68",
+      "weight": 2
     },
     {
       "source": "n6",
-      "target": "n69"
+      "target": "n69",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n70"
+      "target": "n70",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n71"
+      "target": "n71",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n72"
+      "target": "n72",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n73"
+      "target": "n73",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n74"
+      "target": "n74",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n75"
+      "target": "n75",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n76"
+      "target": "n76",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n77"
+      "target": "n77",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n78"
+      "target": "n78",
+      "weight": 2
     },
     {
       "source": "n6",
-      "target": "n79"
+      "target": "n79",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n80"
+      "target": "n80",
+      "weight": 1
     },
     {
       "source": "n6",
-      "target": "n81"
+      "target": "n81",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n184"
+      "target": "n184",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n185"
+      "target": "n185",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n186"
+      "target": "n186",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n187"
+      "target": "n187",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n188"
+      "target": "n188",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n189"
+      "target": "n189",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n190"
+      "target": "n190",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n191"
+      "target": "n191",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n192"
+      "target": "n192",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n193"
+      "target": "n193",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n194"
+      "target": "n194",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n3"
+      "target": "n3",
+      "weight": 1
     },
     {
       "source": "n7",
-      "target": "n149"
+      "target": "n149",
+      "weight": 2
     },
     {
       "source": "n8",
-      "target": "n149"
+      "target": "n149",
+      "weight": 3
     },
     {
       "source": "n8",
-      "target": "n150"
+      "target": "n150",
+      "weight": 2
     },
     {
       "source": "n8",
-      "target": "n151"
+      "target": "n151",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n83"
+      "target": "n83",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n84"
+      "target": "n84",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n85"
+      "target": "n85",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n86"
+      "target": "n86",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n87"
+      "target": "n87",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n88"
+      "target": "n88",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n89"
+      "target": "n89",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n90"
+      "target": "n90",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n91"
+      "target": "n91",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n92"
+      "target": "n92",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n93"
+      "target": "n93",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n94"
+      "target": "n94",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n95"
+      "target": "n95",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n96"
+      "target": "n96",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n97"
+      "target": "n97",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n98"
+      "target": "n98",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n99"
+      "target": "n99",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n100"
+      "target": "n100",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n101"
+      "target": "n101",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n102"
+      "target": "n102",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n103"
+      "target": "n103",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n104"
+      "target": "n104",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n105"
+      "target": "n105",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n147"
+      "target": "n147",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n148"
+      "target": "n148",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n149"
+      "target": "n149",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n152"
+      "target": "n152",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n82"
+      "target": "n82",
+      "weight": 1
     },
     {
       "source": "n9",
-      "target": "n35"
+      "target": "n35",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n103"
+      "target": "n103",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n104"
+      "target": "n104",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n105"
+      "target": "n105",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n106"
+      "target": "n106",
+      "weight": 2
     },
     {
       "source": "n10",
-      "target": "n107"
+      "target": "n107",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n108"
+      "target": "n108",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n109"
+      "target": "n109",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n110"
+      "target": "n110",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n111"
+      "target": "n111",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n112"
+      "target": "n112",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n113"
+      "target": "n113",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n114"
+      "target": "n114",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n115"
+      "target": "n115",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n116"
+      "target": "n116",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n117"
+      "target": "n117",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n118"
+      "target": "n118",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n119"
+      "target": "n119",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n120"
+      "target": "n120",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n121"
+      "target": "n121",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n122"
+      "target": "n122",
+      "weight": 2
     },
     {
       "source": "n10",
-      "target": "n123"
+      "target": "n123",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n124"
+      "target": "n124",
+      "weight": 2
     },
     {
       "source": "n10",
-      "target": "n125"
+      "target": "n125",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n126"
+      "target": "n126",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n127"
+      "target": "n127",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n128"
+      "target": "n128",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n129"
+      "target": "n129",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n130"
+      "target": "n130",
+      "weight": 1
     },
     {
       "source": "n10",
-      "target": "n131"
+      "target": "n131",
+      "weight": 2
     },
     {
       "source": "n10",
-      "target": "n36"
+      "target": "n36",
+      "weight": 3
     },
     {
       "source": "n10",
-      "target": "n149"
+      "target": "n149",
+      "weight": 4
     },
     {
       "source": "n11",
-      "target": "n129"
+      "target": "n129",
+      "weight": 2
     },
     {
       "source": "n11",
-      "target": "n130"
+      "target": "n130",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n131"
+      "target": "n131",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n132"
+      "target": "n132",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n133"
+      "target": "n133",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n134"
+      "target": "n134",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n135"
+      "target": "n135",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n136"
+      "target": "n136",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n137"
+      "target": "n137",
+      "weight": 2
     },
     {
       "source": "n11",
-      "target": "n138"
+      "target": "n138",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n139"
+      "target": "n139",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n140"
+      "target": "n140",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n141"
+      "target": "n141",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n142"
+      "target": "n142",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n143"
+      "target": "n143",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n144"
+      "target": "n144",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n145"
+      "target": "n145",
+      "weight": 3
     },
     {
       "source": "n11",
-      "target": "n146"
+      "target": "n146",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n147"
+      "target": "n147",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n148"
+      "target": "n148",
+      "weight": 1
     },
     {
       "source": "n11",
-      "target": "n35"
+      "target": "n35",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n19"
+      "target": "n19",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n20"
+      "target": "n20",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n21"
+      "target": "n21",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n22"
+      "target": "n22",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n23"
+      "target": "n23",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n24"
+      "target": "n24",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n25"
+      "target": "n25",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n26"
+      "target": "n26",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n27"
+      "target": "n27",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n28"
+      "target": "n28",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n29"
+      "target": "n29",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n30"
+      "target": "n30",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n31"
+      "target": "n31",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n32"
+      "target": "n32",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n33"
+      "target": "n33",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n34"
+      "target": "n34",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n35"
+      "target": "n35",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n4"
+      "target": "n4",
+      "weight": 1
     },
     {
       "source": "n12",
-      "target": "n18"
+      "target": "n18",
+      "weight": 2
     },
     {
       "source": "n12",
-      "target": "n1"
+      "target": "n1",
+      "weight": 2
     },
     {
       "source": "n12",
-      "target": "n82"
+      "target": "n82",
+      "weight": 1
     }
   ]
 }

@@ -1,0 +1,19 @@
+---
+export interface Props {
+  pdfUrl: string;
+  title: string;
+}
+
+const { pdfUrl, title } = Astro.props;
+---
+<div class="my-10 flex flex-col w-full">
+  <h3 class="mb-4">{title}</h3>
+  <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-apple-border bg-white shadow-sm p-2">
+    <object data={pdfUrl} type="application/pdf" class="w-full h-full rounded-xl">
+      <div class="p-8 text-center text-apple-text-muted">
+        <p>PDF rendering is not supported by your browser.</p>
+        <a href={pdfUrl} target="_blank" class="text-apple-accent hover:underline mt-2 inline-block">Download PDF</a>
+      </div>
+    </object>
+  </div>
+</div>

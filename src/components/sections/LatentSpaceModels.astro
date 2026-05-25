@@ -1,0 +1,72 @@
+---
+import CsvTable from '../ui/CsvTable.astro';
+import PdfEmbed from '../ui/PdfEmbed.astro';
+import InterpretationBlock from '../ui/InterpretationBlock.astro';
+import { CONFIG } from '../../config';
+---
+<section id="latent_space" class="scroll-section flex justify-end">
+  <div class="glass-panel max-w-5xl w-full">
+    <h2>Latent Variables Models</h2>
+    <p>
+      By embedding the network in a latent space, we can identify unobserved clusters or traits among neurons. We compare Distance Latent Space Models (DLSM) and Stochastic Block Models (SBM).
+    </p>
+
+    <!-- DLSM Model Selection -->
+    <h3 class="mt-8">DLSM Model Selection</h3>
+    <CsvTable csvPath={CONFIG.contentPaths.csv.dlsmModelSelection} />
+
+    <InterpretationBlock title="Dimensionality of the Latent Space">
+      <p>Comparing BIC across Euclidean dimensions: <strong>d=2 (BIC = 2918)</strong> vs <strong>d=3 (BIC = 2027)</strong> — the 3D model wins decisively.</p>
+      <p><strong>Biological Significance:</strong> This is a remarkable result. It mathematically demonstrates that the connection probability between neurons <em>cannot</em> be compressed onto a flat 2D map without generating enormous errors. The network intrinsically requires a three-dimensional architecture to account for its edges. This aligns spectacularly with the real anatomy of the mouse cerebral cortex, which is a deeply 3D volume of tissue.</p>
+    </InterpretationBlock>
+
+    <!-- Latent Positions -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-12">
+      <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.dlsmLatentPositions} title="DLSM Latent Positions (Type 1)" />
+      <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.dlsmLatentPositionsType2} title="DLSM Latent Positions (Type 2)" />
+    </div>
+
+    <InterpretationBlock title="Social Space Mapping">
+      <p>These maps plot neurons in the estimated <strong>Latent Social Space</strong>. Nodes placed geometrically close in Euclidean space indicate neurons with a high intrinsic propensity to connect to each other, regardless of existing ties.</p>
+      <p>The color coding by <code>type1</code> and <code>type2</code> reveals whether, for example, inhibitory neurons form a separate "island" from excitatory ones — providing visual evidence of latent community structure beyond the adjacency matrix.</p>
+    </InterpretationBlock>
+
+    <!-- DLSM MCMC Diagnostics -->
+    <div class="mt-12">
+      <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.dlsmMcmcDiagnostics} title="DLSM MCMC Diagnostics" />
+    </div>
+
+    <InterpretationBlock title="DLSM Convergence">
+      <p>Same concept as the ERGM MCMC diagnostics, but applied to the convergence of the geometric coordinates of the Latent Space model. Stable, white-noise traces confirm that the geometric projections are reliable and the model has converged.</p>
+    </InterpretationBlock>
+
+    <!-- SBM Section -->
+    <h3 class="mt-16">Stochastic Block Models (SBM)</h3>
+
+    <div class="mt-8">
+      <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.sbmDataPlot} title="SBM Block Visualization" />
+    </div>
+
+    <InterpretationBlock title="Block Structure Discovery">
+      <p>This shows the adjacency matrix reorganized by cluster assignments. The SBM algorithm identified — purely unsupervised, without knowing any biological labels — the existence of <strong>3 optimal blocks</strong> (structural clusters).</p>
+      <p>The darker quadrants along or off the diagonal indicate connection density between or within blocks. In our connectome, the discovery of 3 blocks reveals a precise macro-architecture: there is a massive functional "core" (Block 3) where all active synaptic traffic occurs, and two small anomalous or peripheral blocks (Blocks 1 &amp; 2). The SBM visually suggests that the network is not a single homogeneous tangle, but is <strong>stratified into distinct connectivity roles</strong>.</p>
+    </InterpretationBlock>
+
+    <h4 class="text-lg font-medium text-apple-text mt-10 mb-2">SBM vs Biological Classification</h4>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div>
+        <h4 class="text-base font-medium text-apple-text mb-2">SBM vs Type 1</h4>
+        <CsvTable csvPath={CONFIG.contentPaths.csv.sbmVsType1} />
+      </div>
+      <div>
+        <h4 class="text-base font-medium text-apple-text mb-2">SBM vs Type 2</h4>
+        <CsvTable csvPath={CONFIG.contentPaths.csv.sbmVsType2} />
+      </div>
+    </div>
+
+    <InterpretationBlock title="Cross-Referencing Blocks with Biology">
+      <p>These contingency tables cross the mathematical block assignments (rows: Block 1, 2, 3) against the biological classification (columns: excitatory vs inhibitory, anatomical type).</p>
+      <p><strong>Key finding:</strong> If Block 3 contains <em>all</em> inhibitory neurons (70) and many excitatory ones (111), while Blocks 1 and 2 contain only neurons classified as "Unknown" — the block model has <strong>independently reconstructed the biological architecture</strong>, perfectly separating unknown entities from known active neurons. This is powerful evidence that network topology alone encodes biological function.</p>
+    </InterpretationBlock>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import CsvTable from '../ui/CsvTable.astro';
+import PdfEmbed from '../ui/PdfEmbed.astro';
+import InterpretationBlock from '../ui/InterpretationBlock.astro';
+import { CONFIG } from '../../config';
+---
+<section id="data_presentation" class="scroll-section flex justify-end">
+  <div class="glass-panel max-w-5xl w-full">
+    <h2>Data Presentation &amp; Exploratory Statistics</h2>
+    <p>
+      The dataset represents the mouse visual cortex as a directed network. Below are the exploratory statistics computed on the network structure, followed by degree distributions and centrality measures.
+    </p>
+
+    <!-- Exploratory Statistics Table -->
+    <h3 class="mt-8">Exploratory Statistics</h3>
+    <CsvTable csvPath={CONFIG.contentPaths.csv.exploratoryStats} />
+
+    <InterpretationBlock title="Interpreting the Network Statistics">
+      <p><strong>Density (0.0056):</strong> The network is extremely sparse — only 0.5% of all possible connections actually exist, indicating highly selective synaptic wiring.</p>
+      <p><strong>Dyads (Mutual: 0, Asymmetric: 214, Null: 18,701) &amp; Reciprocity (0):</strong> No neuron retransmits a signal to the neuron it received it from. Communication is strictly unidirectional (forward-feeding), with no direct feedback loops.</p>
+      <p><strong>Global Transitivity (0.0047):</strong> The probability that two nodes connected to a third are also connected to each other (clustering) is near zero. There are virtually no triangles or dense cliques.</p>
+      <p><strong>Assortativity type1 (−0.006) &amp; type2 (0):</strong> Neurons do not preferentially connect to neurons of the same anatomical or functional type — no evident global homophily.</p>
+      <p><strong>Centralization (Degree: 0.07, Betweenness: 0.0005):</strong> No single "dictator" or super-hub dominates the network; control is broadly distributed.</p>
+    </InterpretationBlock>
+
+    <!-- Degree Distribution -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+      <div>
+        <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.degreeDistribution} title="Degree Distribution" />
+        <InterpretationBlock title="In-Degree vs Out-Degree">
+          <p>The <strong>in-degree</strong> is tightly concentrated: almost every neuron receives exactly 1 connection. The <strong>out-degree</strong>, however, is heavily right-skewed — a few neurons project many arcs while most project very few. This reveals an asymmetric "star" topology where certain pyramidal neurons act as broadcasting hubs.</p>
+        </InterpretationBlock>
+      </div>
+
+      <div>
+        <PdfEmbed pdfUrl={CONFIG.contentPaths.pdf.topBetweenness} title="Top Betweenness Centrality" />
+        <InterpretationBlock title="Bridge Neurons">
+          <p>Only <strong>3 neurons</strong> (nodes 1, 3, 7) show non-zero betweenness centrality. In this asymmetric broadcasting network, most neurons are pure sinks (receivers) or pure sources (senders). These 3 rare "bridge neurons" are the only nodes that both receive and retransmit signals, acting as intermediaries across the network.</p>
+        </InterpretationBlock>
+      </div>
+    </div>
+
+    <!-- Centrality Table (scrollable) -->
+    <h3 class="mt-12">Centrality Measures</h3>
+    <CsvTable csvPath={CONFIG.contentPaths.csv.centralityTable} scrollable={true} />
+    <InterpretationBlock title="Node-Level Dataset">
+      <p>This table provides the raw per-neuron centrality metrics. Each row is a neuron. Use it for targeted downstream analyses, e.g., comparing betweenness across anatomical types ("Do Cell body neurons bridge more than Dendritic fragments?").</p>
+    </InterpretationBlock>
+  </div>
+</section>

@@ -1,11 +1,50 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/sections/Hero.astro';
+import InteractiveGraphSection from '../components/sections/InteractiveGraphSection.astro';
+import DataPresentation from '../components/sections/DataPresentation.astro';
+import ErgmModels from '../components/sections/ErgmModels.astro';
+import LatentSpaceModels from '../components/sections/LatentSpaceModels.astro';
+import Scene from '../components/Scene.jsx';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Mouse Visual Cortex Connectome Analysis">
+  <!-- Fixed 3D Background (decorative light wireframe) -->
+  <div class="fixed inset-0 z-0 pointer-events-none opacity-30">
+    <Scene client:only="react" />
+  </div>
+
+  <!-- Foreground Scrolling Content -->
+  <main class="relative z-10 w-full overflow-hidden">
+    <Hero />
+    <InteractiveGraphSection />
+    <DataPresentation />
+    <ErgmModels />
+    <LatentSpaceModels />
+  </main>
 </Layout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { activeSection } from '../store/scrollStore';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Set up scroll triggers for each section
+  const sections = document.querySelectorAll('.scroll-section');
+  
+  sections.forEach((section) => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 50%',
+      end: 'bottom 50%',
+      onEnter: () => {
+        if (section.id) activeSection.set(section.id as any);
+      },
+      onEnterBack: () => {
+        if (section.id) activeSection.set(section.id as any);
+      }
+    });
+  });
+</script>

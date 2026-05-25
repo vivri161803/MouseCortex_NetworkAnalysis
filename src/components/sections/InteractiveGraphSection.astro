@@ -1,0 +1,16 @@
+---
+import NetworkGraph from '../NetworkGraph.jsx';
+---
+<section id="interactive_graph" class="scroll-section !px-4 md:!px-12">
+  <div class="w-full max-w-7xl mx-auto">
+    <div class="mb-8">
+      <h2>Network Visualization</h2>
+      <p>
+        Interactive force-directed layout of the mouse visual cortex connectome. 194 neurons, 214 directed synaptic connections. Drag nodes to reposition, scroll to zoom, click to highlight connections. Use the legend to filter by neuron type.
+      </p>
+    </div>
+    <div class="rounded-3xl border border-apple-border bg-white shadow-sm overflow-hidden">
+      <NetworkGraph client:only="react" />
+    </div>
+  </div>
+</section>
