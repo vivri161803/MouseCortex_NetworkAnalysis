@@ -4,10 +4,12 @@ import KnowledgeGraph from './KnowledgeGraph';
 
 export default function Scene() {
   return (
-    <div className="w-full h-full absolute inset-0" style={{ backgroundColor: '#fbfbfd' }}>
-      <Canvas camera={{ fov: 45, position: [0, 0, 100], near: 0.1, far: 2000 }}>
-        <ambientLight intensity={0.8} />
-        <pointLight position={[10, 10, 10]} intensity={0.6} color="#ffffff" />
+    <div className="w-full h-full absolute inset-0">
+      <Canvas
+        camera={{ fov: 50, position: [0, 0, 100], near: 1, far: 200 }}
+        gl={{ alpha: true, antialias: true }}
+        style={{ background: 'transparent' }}
+      >
         <KnowledgeGraph />
       </Canvas>
     </div>
