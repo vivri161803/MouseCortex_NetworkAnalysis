@@ -1,0 +1,60 @@
+# Role & Objective
+You are an expert Frontend Developer specializing in Astro, React, React Three Fiber (R3F), GSAP, and Tailwind CSS. You are an expert in Vercel deployment.
+Your task is to build a high-performance, modern, and minimalist presentation for an academic report. The audience is composed by professors and researchers.
+The design must be heavily inspired by terminal aesthetics, digital minimalism, and dark mode interfaces, focusing on typography, precise spacing, and smooth 60fps rendering.
+
+You have to transform [text](report_accademico.html) into a  breatiful ASTRO website deployable on VERCEL with the following specifications:
+
+# Core Programming Paradigms
+You must strictly adhere to the following paradigms:
+1. **Component-Based Architecture:** Everything must be a modular, reusable component (Astro components for static UI, React components for the 3D Island).
+2. **Declarative Programming:** Describe the UI based on state. Even when using GSAP for scroll tracking, pass the state/progress declaratively to the React R3F components rather than imperatively manipulating the 3D scene from the outside.
+3. **Static Site Generation (SSG):** Leverage Astro to generate static HTML at build time for maximum performance, loading JavaScript strictly only for the React Three Fiber island (`client:only="react"`).
+
+# Global Configuration (`src/config.ts`)
+Create a central configuration file `src/config.ts` that exports all key variables so the UI can be tweaked on the fly. This must include:
+- File paths of the files to be included in the presentation. 
+- Theme colors (backgrounds, text, graph node colors, accent colors).
+- 3D Camera coordinates and `lookAt` vectors corresponding to each section of the site.
+
+# UI Structure & Components Flow
+The HTML overlay over the 3D canvas must be divided into three main sequential components:
+1. **`Hero.astro` (Initial Presentation):**
+   - Title: Mouse Visual Cortex Connectome Analysis
+   - Subtitle: Insights from Network Topology and Latent Space Models 
+   - Introduction: This project is about analyzing the mouse visual cortex, a complex network of neurons that processes visual information.
+2. **`Data Presentation` (Projects & Research):**
+   - Text explaining the dataset briefly
+   - Static visualization of @mouse_visual_cortex_2.graphml
+   - Computed statistics on the network: [text](output/csv/exploratory_stats.csv), [text](output/pdf/degree_distribution.pdf), [text](output/pdf/top_betweenness.pdf)
+3. **`ergm models` (ERGM models):**
+   - List of ERGM models fit on the dataset.
+   - Computed ERGM coefficients: [text](output/csv/ergm_coefficients.csv)
+   - ERGM model selection: [text](output/csv/ergm_model_selection.csv)
+   - Intepretation of the results: [text](interpretation/output_interpretation.md)
+   - Goodness of fit of the best model selected: [text](output/pdf/gof_plots.pdf)
+4. **Latent space models**
+    - Must include a list of latent space models fit on the dataset.
+        - Distance Latent Space Models: fit: [text](output/csv/dlsm_model_selection.csv) positions in latent space: [text](output/pdf/dlsm_latent_positions_type2.pdf)[text](output/pdf/dlsm_latent_positions.pdf)
+        - Stochastic Block Models: fit: [text](output/csv/sbm_vs_type1.csv)[text](output/csv/sbm_vs_type2.csv) blocks visualization: [text](output/pdf/sbm_data_plot.pdf)
+    - Interpretation of results based on [text](interpretation/output_interpretation.md)
+
+# Core Feature: 3D Pre-Calculated Knowledge Graph & GSAP Integration
+The website background will feature a 3D Knowledge Graph. To maximize performance:
+1. The graph data (nodes and edges) is pre-calculated and stored in `src/data/graph_data.json`.
+2. Use `InstancedMesh` for nodes and `Segments` from `@react-three/drei` for edges to render everything in a single draw call.
+3. **How to use the rendered KG with GSAP ScrollTrigger:**
+   - Attach GSAP `ScrollTrigger` to the HTML `section` tags (`Hero`, `Projects`, `Contacts`).
+   - Use GSAP to track the scroll progress and active section. Dispatch a custom event (or use a lightweight state manager like NanoStores) to communicate the active section ID to the React Island.
+   - Inside the R3F canvas, listen to the active section state. Fetch the target camera coordinates from `config.ts` for that specific section.
+   - Use the `useFrame` hook in R3F to smoothly interpolate (`lerp`) the `camera.position` and `camera.lookAt` towards the new coordinates. This creates a stunning "fly-through" effect inside the Knowledge Graph as the user scrolls down the page.
+
+# Implementation Steps for the Agent
+1. Scaffold the Astro project with Tailwind CSS and React integrations. Install all the dependecies.
+2. Create `src/config.ts` with all UI, content, and 3D camera variables.
+3. Generate the mock `src/data/graph_data.json` with nodes (id, label, size, pos: [x,y,z]) and links (source, target).
+4. Build the `KnowledgeGraph.jsx` implementing the `InstancedMesh`, `Segments`, and the `useFrame` camera lerping logic.
+5. Build the sequence of Astro components (`Hero.astro`, `Projects.astro`, `Contacts.astro`) consuming data from `config.ts`.
+6. Assemble `index.astro`, putting the Canvas fixed in the background and layering the Astro components on top, wiring up the GSAP ScrollTrigger logic.
+
+Please begin by providing the `src/config.ts` and the `index.astro` layout structure.

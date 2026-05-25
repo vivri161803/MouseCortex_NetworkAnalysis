@@ -1,0 +1,196 @@
+"node","type1","type2","degree_in","degree_out","degree_total","closeness_in","closeness_out","betweenness"
+"n0","Characterized pyramidal neuron","Unknown",0,0,0,NA,NA,0
+"n1","Dendritic fragment","Unknown",2,6,8,0.333333333333333,0.125,10
+"n2","Characterized pyramidal neuron","Unknown",0,30,30,NA,0.0105263157894737,0
+"n3","Characterized pyramidal neuron","Unknown",1,9,10,0.25,0.1,16
+"n4","Characterized pyramidal neuron","Unknown",2,0,2,0.25,NA,0
+"n5","Characterized pyramidal neuron","Unknown",0,28,28,NA,0.0208333333333333,0
+"n6","Characterized pyramidal neuron","Unknown",0,23,23,NA,0.04,0
+"n7","Characterized pyramidal neuron","Unknown",1,13,14,0.5,0.0303030303030303,18
+"n8","Characterized pyramidal neuron","Unknown",0,3,3,NA,0.166666666666667,0
+"n9","Characterized pyramidal neuron","Unknown",0,29,29,NA,0.0344827586206897,0
+"n10","Characterized pyramidal neuron","Unknown",0,31,31,NA,0.025,0
+"n11","Characterized pyramidal neuron","Unknown",0,21,21,NA,0.04,0
+"n12","Characterized pyramidal neuron","Unknown",0,21,21,NA,0.027027027027027,0
+"n13","Characterized pyramidal neuron","Unknown",0,0,0,NA,NA,0
+"n14","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,0.0833333333333333,NA,0
+"n15","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.166666666666667,NA,0
+"n16","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.166666666666667,NA,0
+"n17","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.166666666666667,NA,0
+"n18","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.2,NA,0
+"n19","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n20","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n21","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n22","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n23","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n24","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n25","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n26","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n27","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n28","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n29","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n30","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n31","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n32","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n33","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n34","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n35","Cell body in EM volume","Postsynaptic inhibitory target",3,0,3,0.333333333333333,NA,0
+"n36","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.25,NA,0
+"n37","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n38","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n39","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n40","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n41","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n42","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n43","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n44","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n45","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n46","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n47","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n48","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n49","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n50","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n51","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n52","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n53","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n54","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n55","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n56","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n57","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n58","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n59","Dendritic fragment","Postsynaptic excitatory target",2,0,2,0.5,NA,0
+"n60","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.5,NA,0
+"n61","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n62","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n63","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n64","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n65","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n66","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n67","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n68","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,0.5,NA,0
+"n69","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n70","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n71","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n72","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n73","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n74","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n75","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n76","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n77","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n78","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.5,NA,0
+"n79","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n80","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n81","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n82","Cell body in EM volume","Postsynaptic inhibitory target",4,0,4,0.111111111111111,NA,0
+"n83","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n84","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n85","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n86","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n87","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n88","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n89","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n90","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n91","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n92","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n93","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n94","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n95","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n96","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n97","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n98","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n99","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n100","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n101","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n102","Cell body in EM volume","Postsynaptic inhibitory target",3,0,3,0.1,NA,0
+"n103","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.5,NA,0
+"n104","Cell body in EM volume","Postsynaptic inhibitory target",2,0,2,0.5,NA,0
+"n105","Dendritic fragment","Postsynaptic excitatory target",2,0,2,0.5,NA,0
+"n106","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.5,NA,0
+"n107","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n108","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n109","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n110","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n111","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n112","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n113","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n114","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n115","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n116","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n117","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n118","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n119","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n120","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n121","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n122","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.5,NA,0
+"n123","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n124","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.5,NA,0
+"n125","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n126","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n127","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n128","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n129","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.333333333333333,NA,0
+"n130","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.5,NA,0
+"n131","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.333333333333333,NA,0
+"n132","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n133","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n134","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n135","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n136","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n137","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,0.5,NA,0
+"n138","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n139","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n140","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n141","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n142","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n143","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n144","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n145","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.333333333333333,NA,0
+"n146","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n147","Dendritic fragment","Postsynaptic excitatory target",2,0,2,0.5,NA,0
+"n148","Dendritic fragment","Postsynaptic excitatory target",2,0,2,0.5,NA,0
+"n149","Cell body in EM volume","Postsynaptic inhibitory target",4,0,4,0.0714285714285714,NA,0
+"n150","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.5,NA,0
+"n151","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n152","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.333333333333333,NA,0
+"n153","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n154","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n155","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n156","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n157","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n158","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n159","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n160","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n161","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,1,NA,0
+"n162","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n163","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n164","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n165","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n166","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n167","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n168","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n169","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n170","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n171","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n172","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n173","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n174","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n175","Dendritic fragment","Postsynaptic excitatory target",1,0,1,1,NA,0
+"n176","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.25,NA,0
+"n177","Dendritic fragment","Postsynaptic inhibitory target",2,0,2,0.142857142857143,NA,0
+"n178","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.142857142857143,NA,0
+"n179","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.142857142857143,NA,0
+"n180","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,0.142857142857143,NA,0
+"n181","Cell body in EM volume","Postsynaptic inhibitory target",1,0,1,0.142857142857143,NA,0
+"n182","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,0.142857142857143,NA,0
+"n183","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.142857142857143,NA,0
+"n184","Cell body in EM volume","Postsynaptic inhibitory target",2,0,2,0.5,NA,0
+"n185","Cell body in EM volume","Postsynaptic inhibitory target",2,0,2,0.5,NA,0
+"n186","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,0.25,NA,0
+"n187","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,0.25,NA,0
+"n188","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,0.25,NA,0
+"n189","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,0.25,NA,0
+"n190","Cell body in EM volume","Postsynaptic excitatory target",1,0,1,0.25,NA,0
+"n191","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.25,NA,0
+"n192","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.25,NA,0
+"n193","Dendritic fragment","Postsynaptic excitatory target",1,0,1,0.25,NA,0
+"n194","Dendritic fragment","Postsynaptic inhibitory target",1,0,1,0.25,NA,0
