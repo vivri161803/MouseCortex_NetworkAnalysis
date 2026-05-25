@@ -13,8 +13,8 @@ const NODE_COLORS = [
   new THREE.Color('#d2d2d7'), // Apple border silver
 ];
 
-const EDGE_BASE   = new THREE.Color('#d2d2d7');
-const EDGE_PULSE  = new THREE.Color('#0071e3');
+const EDGE_BASE   = new THREE.Color('#86868b');
+const EDGE_PULSE  = new THREE.Color('#ff6b35');
 
 const tempVec3   = new THREE.Vector3();
 const tempLookAt = new THREE.Vector3();
@@ -94,23 +94,18 @@ const edgeFrag = `
   varying float vDepth;
 
   void main() {
-    // Depth fog — fade far edges
-    float fog = smoothstep(30.0, 130.0, vDepth);
-
-    // Base edge opacity (very subtle)
-    float baseAlpha = (1.0 - fog) * 0.12;
+    // Base edge — always visible, no fog
+    float baseAlpha = 0.18;
 
     // ── Electric pulse ──
-    // Each edge has a random phase. The pulse travels from frac=0 → 1
-    // with a speed modulated by time. Only some edges pulse at any moment.
-    float cycle   = mod(uTime * 0.25 + vPhase * 3.7, 4.0);  // 4s cycle, staggered
-    float active  = step(cycle, 1.0);                          // pulse active first 1s of 4s
-    float waveFront = mod(cycle, 1.0);                         // 0→1 travel along edge
-    float pulse   = active * exp(-12.0 * (vFrac - waveFront) * (vFrac - waveFront));
+    // 3s cycle per edge, pulse fires for 1s then rests 2s.
+    float cycle     = mod(uTime * 0.4 + vPhase * 7.3, 3.0);
+    float active    = step(cycle, 1.0);
+    float waveFront = mod(cycle, 1.0);
+    float pulse     = active * exp(-5.0 * (vFrac - waveFront) * (vFrac - waveFront));
 
-    // Mix base and pulse
-    vec3  col   = mix(uBaseColor, uPulseColor, pulse * 0.9);
-    float alpha = baseAlpha + pulse * (1.0 - fog) * 0.55;
+    vec3  col   = mix(uBaseColor, uPulseColor, pulse);
+    float alpha = baseAlpha + pulse * 0.82;
 
     gl_FragColor = vec4(col, alpha);
   }

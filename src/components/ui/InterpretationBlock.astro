@@ -5,14 +5,11 @@ export interface Props {
 
 const { title } = Astro.props;
 ---
-<div class="my-8 rounded-2xl border-l-4 border-apple-accent bg-apple-accent/[0.04] p-6 md:p-8">
-  <div class="flex items-start gap-3 mb-3">
-    <span class="text-xl leading-none mt-0.5">🔬</span>
-    <h4 class="text-lg font-semibold text-apple-text tracking-tight">
-      {title || 'Interpretation'}
-    </h4>
-  </div>
-  <div class="text-sm text-apple-text-muted leading-relaxed space-y-3 pl-9">
+<div class="my-6 rounded-xl border-l-[3px] border-apple-accent bg-apple-accent/[0.03] p-5">
+  <h4 class="text-sm font-semibold text-apple-text tracking-tight mb-2">
+    {title || 'Interpretation'}
+  </h4>
+  <div class="text-xs text-apple-text-muted leading-relaxed space-y-2">
     <slot />
   </div>
 </div>
