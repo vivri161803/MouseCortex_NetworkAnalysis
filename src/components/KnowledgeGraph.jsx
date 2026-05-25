@@ -12,8 +12,8 @@ const NODE_PALETTE = [
   [0.824, 0.824, 0.843], // #d2d2d7 — silver
 ];
 
-const EDGE_BASE_R = 0.78, EDGE_BASE_G = 0.78, EDGE_BASE_B = 0.80;  // #c7c7cc
-const PULSE_R = 1.0, PULSE_G = 0.42, PULSE_B = 0.21;               // #ff6b35
+const EDGE_BASE_R = 0.91, EDGE_BASE_G = 0.91, EDGE_BASE_B = 0.93;  // #e8e8ed near-white
+const PULSE_R = 0.0, PULSE_G = 0.443, PULSE_B = 0.890;              // #0071e3 Apple blue
 
 const NODE_COUNT = 350;
 const SPHERE_R = 55;
@@ -248,7 +248,7 @@ export default function KnowledgeGraph() {
         <lineBasicMaterial
           vertexColors
           transparent
-          opacity={0.4}
+          opacity={1.0}
           depthWrite={false}
         />
       </lineSegments>
