@@ -4,239 +4,160 @@ import * as THREE from 'three';
 import { useStore } from '@nanostores/react';
 import { activeSection } from '../store/scrollStore';
 import { CONFIG } from '../config';
-import graphData from '../data/graph_data.json';
 
-const tempObject = new THREE.Object3D();
+// ── Point cloud config ──────────────────────────────────────────
+const POINT_COUNT = 600;
+const SPHERE_RADIUS = 65;
+
+// Soft pastel palette — Apple Vision Pro vibes
+const PALETTE = [
+  new THREE.Color('#b8c6db'), // steel blue
+  new THREE.Color('#c4b7d4'), // lavender
+  new THREE.Color('#a8d8c8'), // mint
+  new THREE.Color('#d4c5a9'), // warm sand
+  new THREE.Color('#c0d6e4'), // ice blue
+  new THREE.Color('#d1b8c3'), // rose
+];
+
 const tempVec3 = new THREE.Vector3();
 const tempLookAt = new THREE.Vector3();
-const tempColor = new THREE.Color();
 
-// Type1 → glow color for nodes
-const TYPE_GLOW = {
-  'Characterized pyramidal neuron': new THREE.Color('#a8c8f0'), // soft blue
-  'Cell body in EM volume':         new THREE.Color('#a8e6c0'), // soft green
-  'Dendritic fragment':              new THREE.Color('#d0d0d5'), // soft grey
-};
-const DEFAULT_GLOW = new THREE.Color('#c8c8cc');
-
-// Pre-calculate positions on a sphere with organic noise
-const generatePositions = (nodes) => {
-  const map = new Map();
-  nodes.forEach((node, i) => {
-    const phi = Math.acos(-1 + (2 * i) / nodes.length);
-    const theta = Math.sqrt(nodes.length * Math.PI) * phi;
-    const radius = 55;
-
-    const x = radius * Math.cos(theta) * Math.sin(phi);
-    const y = radius * Math.sin(theta) * Math.sin(phi);
-    const z = radius * Math.cos(phi);
-
-    const noise = 5;
-    const pos = new THREE.Vector3(
-      x + (Math.random() - 0.5) * noise,
-      y + (Math.random() - 0.5) * noise,
-      z + (Math.random() - 0.5) * noise
-    );
-
-    map.set(node.id, pos);
-  });
-  return map;
-};
-
-const positionsMap = generatePositions(graphData.nodes);
-
-// Custom shader for pulsing glow nodes
-const nodeVertexShader = `
+// ── Custom shaders ──────────────────────────────────────────────
+const vertexShader = `
+  attribute float aSize;
   attribute float aPhase;
-  attribute vec3 aColor;
-  varying vec3 vColor;
+  attribute vec3  aColor;
+
+  varying vec3  vColor;
   varying float vAlpha;
+
   uniform float uTime;
-  
+  uniform float uPixelRatio;
+
   void main() {
     vColor = aColor;
-    // Gentle pulse per node
-    float pulse = 0.7 + 0.3 * sin(uTime * 0.8 + aPhase * 6.28);
-    vAlpha = pulse;
-    
-    vec4 mvPosition = modelViewMatrix * instanceMatrix * vec4(position, 1.0);
-    gl_Position = projectionMatrix * mvPosition;
+
+    // Gentle breathing per particle
+    float breath = 0.6 + 0.4 * sin(uTime * 0.4 + aPhase * 6.2831);
+    vAlpha = breath;
+
+    vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
+
+    // Size attenuates with distance (like gl_PointSize)
+    gl_PointSize = aSize * uPixelRatio * (180.0 / -mvPos.z) * breath;
+    gl_Position  = projectionMatrix * mvPos;
   }
 `;
 
-const nodeFragmentShader = `
-  varying vec3 vColor;
+const fragmentShader = `
+  varying vec3  vColor;
   varying float vAlpha;
-  
+
   void main() {
-    // Soft circular glow
-    float dist = length(gl_PointCoord - vec2(0.5));
-    if (dist > 0.5) discard;
-    float glow = smoothstep(0.5, 0.0, dist);
-    gl_FragColor = vec4(vColor, glow * vAlpha * 0.85);
+    // Radial gradient → soft circle with feathered edge
+    float d = length(gl_PointCoord - 0.5);
+    if (d > 0.5) discard;
+
+    // Two-band glow: bright core + soft halo
+    float core = smoothstep(0.5, 0.05, d);   // tight bright center
+    float halo = smoothstep(0.5, 0.20, d);   // wider soft glow
+
+    float intensity = core * 0.9 + halo * 0.3;
+    float alpha     = intensity * vAlpha * 0.55;
+
+    gl_FragColor = vec4(vColor, alpha);
   }
 `;
 
-// Custom shader for pulsing edges with depth-based opacity
-const edgeVertexShader = `
-  varying float vDepth;
-  uniform float uTime;
-  
-  void main() {
-    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-    vDepth = -mvPosition.z;
-    gl_Position = projectionMatrix * mvPosition;
-  }
-`;
+// ── Generate random points on a sphere with jitter ──────────────
+function generateCloud() {
+  const positions = new Float32Array(POINT_COUNT * 3);
+  const sizes     = new Float32Array(POINT_COUNT);
+  const phases    = new Float32Array(POINT_COUNT);
+  const colors    = new Float32Array(POINT_COUNT * 3);
 
-const edgeFragmentShader = `
-  varying float vDepth;
-  uniform float uTime;
-  uniform float uFogNear;
-  uniform float uFogFar;
-  uniform vec3 uColor;
-  
-  void main() {
-    // Depth-based fade (fog effect)
-    float fogFactor = smoothstep(uFogNear, uFogFar, vDepth);
-    float pulse = 0.5 + 0.2 * sin(uTime * 0.5 + vDepth * 0.05);
-    float alpha = (1.0 - fogFactor) * pulse * 0.35;
-    gl_FragColor = vec4(uColor, alpha);
-  }
-`;
+  for (let i = 0; i < POINT_COUNT; i++) {
+    // Fibonacci sphere distribution for even coverage
+    const phi   = Math.acos(-1 + (2 * i) / POINT_COUNT);
+    const theta = Math.sqrt(POINT_COUNT * Math.PI) * phi;
 
+    // Vary radius so it's not a perfect shell — more like a cloud
+    const r = SPHERE_RADIUS * (0.4 + Math.random() * 0.6);
+
+    positions[i * 3]     = r * Math.cos(theta) * Math.sin(phi) + (Math.random() - 0.5) * 8;
+    positions[i * 3 + 1] = r * Math.sin(theta) * Math.sin(phi) + (Math.random() - 0.5) * 8;
+    positions[i * 3 + 2] = r * Math.cos(phi)                   + (Math.random() - 0.5) * 8;
+
+    sizes[i]  = 1.2 + Math.random() * 2.5;   // varied dot sizes
+    phases[i] = Math.random();                 // desync breathing
+
+    const c = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+    colors[i * 3]     = c.r;
+    colors[i * 3 + 1] = c.g;
+    colors[i * 3 + 2] = c.b;
+  }
+
+  return { positions, sizes, phases, colors };
+}
+
+// ── Component ───────────────────────────────────────────────────
 export default function KnowledgeGraph() {
-  const meshRef = useRef(null);
-  const edgeMaterialRef = useRef(null);
-  const nodeMaterialRef = useRef(null);
+  const groupRef    = useRef(null);
+  const materialRef = useRef(null);
   const currentSection = useStore(activeSection);
 
-  // Create per-instance phase offsets and colors
-  const { matrices, phases, colors } = useMemo(() => {
-    const mat = new Float32Array(graphData.nodes.length * 16);
-    const ph = new Float32Array(graphData.nodes.length);
-    const col = new Float32Array(graphData.nodes.length * 3);
+  const { positions, sizes, phases, colors } = useMemo(generateCloud, []);
 
-    graphData.nodes.forEach((node, i) => {
-      const pos = positionsMap.get(node.id);
-      tempObject.position.copy(pos);
-      tempObject.scale.setScalar(0.6);
-      tempObject.updateMatrix();
-      tempObject.matrix.toArray(mat, i * 16);
-      
-      ph[i] = Math.random(); // random phase offset for pulse
-
-      const glowColor = TYPE_GLOW[node.type1] || DEFAULT_GLOW;
-      col[i * 3]     = glowColor.r;
-      col[i * 3 + 1] = glowColor.g;
-      col[i * 3 + 2] = glowColor.b;
-    });
-
-    return { matrices: mat, phases: ph, colors: col };
-  }, []);
-
-  // Create Float32Array for line positions
-  const linePositions = useMemo(() => {
-    const positions = [];
-    graphData.links.forEach((link) => {
-      const start = positionsMap.get(link.source);
-      const end = positionsMap.get(link.target);
-      if (start && end) {
-        positions.push(start.x, start.y, start.z);
-        positions.push(end.x, end.y, end.z);
-      }
-    });
-    return new Float32Array(positions);
-  }, []);
-
-  // Edge shader uniforms
-  const edgeUniforms = useMemo(() => ({
-    uTime: { value: 0 },
-    uFogNear: { value: 30 },
-    uFogFar: { value: 120 },
-    uColor: { value: new THREE.Color('#c0c0c8') },
-  }), []);
-
-  // Node shader uniforms
-  const nodeUniforms = useMemo(() => ({
-    uTime: { value: 0 },
+  const uniforms = useMemo(() => ({
+    uTime:       { value: 0 },
+    uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
   }), []);
 
   useFrame((state, delta) => {
+    // Camera fly-through driven by scroll section
     const target = CONFIG.cameraStops[currentSection] || CONFIG.cameraStops.hero;
 
-    // Smooth camera lerping
     tempVec3.set(...target.position);
-    state.camera.position.lerp(tempVec3, delta * 2.0);
+    state.camera.position.lerp(tempVec3, delta * 1.8);
 
     tempLookAt.set(...target.lookAt);
     if (!state.camera.userData.currentLookAt) {
       state.camera.userData.currentLookAt = new THREE.Vector3(0, 0, 0);
     }
-    state.camera.userData.currentLookAt.lerp(tempLookAt, delta * 2.0);
+    state.camera.userData.currentLookAt.lerp(tempLookAt, delta * 1.8);
     state.camera.lookAt(state.camera.userData.currentLookAt);
 
-    // Very slow organic rotation
-    if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.015;
-      meshRef.current.rotation.x += delta * 0.005;
+    // Slow dreamy rotation
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.012;
+      groupRef.current.rotation.x += delta * 0.003;
     }
 
-    // Update shader time uniforms
-    const elapsed = state.clock.getElapsedTime();
-    if (edgeMaterialRef.current) {
-      edgeMaterialRef.current.uniforms.uTime.value = elapsed;
-    }
-    if (nodeMaterialRef.current) {
-      nodeMaterialRef.current.uniforms.uTime.value = elapsed;
+    // Update time
+    if (materialRef.current) {
+      materialRef.current.uniforms.uTime.value = state.clock.getElapsedTime();
     }
   });
 
   return (
-    <group ref={meshRef}>
-      {/* Glowing nodes with per-instance color and phase */}
-      <instancedMesh args={[null, null, graphData.nodes.length]}>
-        <sphereGeometry args={[1, 12, 12]} />
+    <group ref={groupRef}>
+      <points>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" count={POINT_COUNT} array={positions} itemSize={3} />
+          <bufferAttribute attach="attributes-aSize"    count={POINT_COUNT} array={sizes}     itemSize={1} />
+          <bufferAttribute attach="attributes-aPhase"   count={POINT_COUNT} array={phases}    itemSize={1} />
+          <bufferAttribute attach="attributes-aColor"   count={POINT_COUNT} array={colors}    itemSize={3} />
+        </bufferGeometry>
         <shaderMaterial
-          ref={nodeMaterialRef}
-          vertexShader={nodeVertexShader}
-          fragmentShader={nodeFragmentShader}
-          uniforms={nodeUniforms}
+          ref={materialRef}
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          uniforms={uniforms}
           transparent
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
-        <instancedBufferAttribute attach="instanceMatrix" args={[matrices, 16]} />
-        <instancedBufferAttribute
-          attach="geometry-attributes-aPhase"
-          args={[phases, 1]}
-        />
-        <instancedBufferAttribute
-          attach="geometry-attributes-aColor"
-          args={[colors, 3]}
-        />
-      </instancedMesh>
-
-      {/* Pulsing edges with depth-fog */}
-      <lineSegments>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={linePositions.length / 3}
-            array={linePositions}
-            itemSize={3}
-          />
-        </bufferGeometry>
-        <shaderMaterial
-          ref={edgeMaterialRef}
-          vertexShader={edgeVertexShader}
-          fragmentShader={edgeFragmentShader}
-          uniforms={edgeUniforms}
-          transparent
-          depthWrite={false}
-          blending={THREE.NormalBlending}
-        />
-      </lineSegments>
+      </points>
     </group>
   );
 }
