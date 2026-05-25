@@ -102,10 +102,11 @@ function buildGraph() {
     edgeColors[e * 6 + 5] = EDGE_BASE_B;
 
     edgeMeta.push({
-      phase: Math.random() * 10,        // random time offset
-      speed: 0.3 + Math.random() * 0.4, // pulse speed variation
-      duration: 0.8 + Math.random() * 0.4,
-      cooldown: 2.0 + Math.random() * 3.0,
+      phase: Math.random() * 10,
+      speed: 0.3 + Math.random() * 0.4,
+      duration: 0.6 + Math.random() * 0.5,
+      cooldown: 1.5 + Math.random() * 3.0,
+      reverse: Math.random() > 0.5,
     });
   }
 
@@ -180,7 +181,7 @@ export default function KnowledgeGraph() {
       groupRef.current.rotation.x += delta * 0.004;
     }
 
-    // ── Animate edge vertex colors (pulse effect) ──
+    // ── Animate edge vertex colors (traveling pulse) ──
     const t = state.clock.getElapsedTime();
     if (edgeColorRef.current) {
       const colors = edgeColorRef.current.array;
@@ -189,27 +190,31 @@ export default function KnowledgeGraph() {
         const meta = graph.edgeMeta[e];
         const totalCycle = meta.duration + meta.cooldown;
         const cycle = ((t * meta.speed + meta.phase) % totalCycle);
-        
-        let pulseIntensity = 0;
+
+        // Intensities for start vertex (v0) and end vertex (v1)
+        let v0 = 0, v1 = 0;
+
         if (cycle < meta.duration) {
-          // Active pulse — both vertices glow simultaneously
-          const progress = cycle / meta.duration;
-          // Bell curve: peak at middle of duration
-          pulseIntensity = Math.sin(progress * Math.PI);
+          // Signal is traveling along the edge
+          const progress = cycle / meta.duration;  // 0 → 1
+
+          // v0 peaks early, v1 peaks late → gradient slides along the line
+          v0 = Math.max(0, Math.sin((progress - 0.0) * Math.PI * 1.3));
+          v1 = Math.max(0, Math.sin((progress - 0.4) * Math.PI * 1.3));
+
+          // Reverse direction for some edges
+          if (meta.reverse) { const tmp = v0; v0 = v1; v1 = tmp; }
         }
 
-        // Lerp between base color and pulse color
-        const r = EDGE_BASE_R + (PULSE_R - EDGE_BASE_R) * pulseIntensity;
-        const g = EDGE_BASE_G + (PULSE_G - EDGE_BASE_G) * pulseIntensity;
-        const b = EDGE_BASE_B + (PULSE_B - EDGE_BASE_B) * pulseIntensity;
+        // Vertex 0 (start of edge)
+        colors[e * 6]     = EDGE_BASE_R + (PULSE_R - EDGE_BASE_R) * v0;
+        colors[e * 6 + 1] = EDGE_BASE_G + (PULSE_G - EDGE_BASE_G) * v0;
+        colors[e * 6 + 2] = EDGE_BASE_B + (PULSE_B - EDGE_BASE_B) * v0;
 
-        // Both vertices of this edge
-        colors[e * 6]     = r;
-        colors[e * 6 + 1] = g;
-        colors[e * 6 + 2] = b;
-        colors[e * 6 + 3] = r;
-        colors[e * 6 + 4] = g;
-        colors[e * 6 + 5] = b;
+        // Vertex 1 (end of edge)
+        colors[e * 6 + 3] = EDGE_BASE_R + (PULSE_R - EDGE_BASE_R) * v1;
+        colors[e * 6 + 4] = EDGE_BASE_G + (PULSE_G - EDGE_BASE_G) * v1;
+        colors[e * 6 + 5] = EDGE_BASE_B + (PULSE_B - EDGE_BASE_B) * v1;
       }
 
       edgeColorRef.current.needsUpdate = true;
