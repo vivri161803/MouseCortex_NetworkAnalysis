@@ -1,237 +1,169 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useCallback } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useStore } from '@nanostores/react';
 import { activeSection } from '../store/scrollStore';
 import { CONFIG } from '../config';
-import graphData from '../data/graph_data.json';
 
-// ── Three UI-coherent colors ────────────────────────────────────
-const NODE_COLORS = [
-  new THREE.Color('#0071e3'), // Apple accent blue
-  new THREE.Color('#86868b'), // Apple mid-grey
-  new THREE.Color('#d2d2d7'), // Apple border silver
+// ── Palette: 3 colors from UI ──────────────────────────────────
+const NODE_PALETTE = [
+  [0.0, 0.443, 0.890],  // #0071e3 — Apple blue
+  [0.525, 0.525, 0.545], // #86868b — mid grey
+  [0.824, 0.824, 0.843], // #d2d2d7 — silver
 ];
 
-const EDGE_BASE   = new THREE.Color('#86868b');
-const EDGE_PULSE  = new THREE.Color('#ff6b35');
+const EDGE_BASE_R = 0.78, EDGE_BASE_G = 0.78, EDGE_BASE_B = 0.80;  // #c7c7cc
+const PULSE_R = 1.0, PULSE_G = 0.42, PULSE_B = 0.21;               // #ff6b35
 
-const tempVec3   = new THREE.Vector3();
+const NODE_COUNT = 350;
+const SPHERE_R = 55;
+const K_NEIGHBORS = 3;
+
+const tempVec3 = new THREE.Vector3();
 const tempLookAt = new THREE.Vector3();
 
-// ── Node count & layout ─────────────────────────────────────────
-const NODE_COUNT = 400;
-const SPHERE_R   = 58;
+// ── Build point cloud + edges ───────────────────────────────────
+function buildGraph() {
+  // Fibonacci sphere with radial jitter
+  const pts = [];
+  for (let i = 0; i < NODE_COUNT; i++) {
+    const phi = Math.acos(-1 + (2 * i) / NODE_COUNT);
+    const theta = Math.sqrt(NODE_COUNT * Math.PI) * phi;
+    const r = SPHERE_R * (0.35 + Math.random() * 0.65);
+    const jitter = 5;
+    pts.push(new THREE.Vector3(
+      r * Math.cos(theta) * Math.sin(phi) + (Math.random() - 0.5) * jitter,
+      r * Math.sin(theta) * Math.sin(phi) + (Math.random() - 0.5) * jitter,
+      r * Math.cos(phi) + (Math.random() - 0.5) * jitter,
+    ));
+  }
 
-// ── Shaders: Nodes ──────────────────────────────────────────────
+  // Node geometry (Points)
+  const nodePositions = new Float32Array(NODE_COUNT * 3);
+  const nodeColors = new Float32Array(NODE_COUNT * 3);
+  const nodeSizes = new Float32Array(NODE_COUNT);
+  const nodePhases = new Float32Array(NODE_COUNT);
+
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodePositions[i * 3] = pts[i].x;
+    nodePositions[i * 3 + 1] = pts[i].y;
+    nodePositions[i * 3 + 2] = pts[i].z;
+
+    const c = NODE_PALETTE[Math.floor(Math.random() * NODE_PALETTE.length)];
+    nodeColors[i * 3] = c[0];
+    nodeColors[i * 3 + 1] = c[1];
+    nodeColors[i * 3 + 2] = c[2];
+
+    nodeSizes[i] = 1.5 + Math.random() * 2.0;
+    nodePhases[i] = Math.random() * Math.PI * 2;
+  }
+
+  // K-NN edges
+  const edgeList = [];
+  const edgeSet = new Set();
+  for (let i = 0; i < NODE_COUNT; i++) {
+    const dists = [];
+    for (let j = 0; j < NODE_COUNT; j++) {
+      if (i === j) continue;
+      dists.push({ j, d: pts[i].distanceTo(pts[j]) });
+    }
+    dists.sort((a, b) => a.d - b.d);
+    for (let m = 0; m < K_NEIGHBORS; m++) {
+      const j = dists[m].j;
+      const key = Math.min(i, j) + '_' + Math.max(i, j);
+      if (!edgeSet.has(key)) {
+        edgeSet.add(key);
+        edgeList.push([i, j]);
+      }
+    }
+  }
+
+  // Edge geometry (LineSegments: pairs of vertices)
+  const edgeCount = edgeList.length;
+  const edgePositions = new Float32Array(edgeCount * 6);  // 2 verts × 3
+  const edgeColors = new Float32Array(edgeCount * 6);     // 2 verts × 3 (vertex colors)
+  const edgeMeta = [];  // per-edge metadata for animation
+
+  for (let e = 0; e < edgeCount; e++) {
+    const [i, j] = edgeList[e];
+    edgePositions[e * 6] = pts[i].x;
+    edgePositions[e * 6 + 1] = pts[i].y;
+    edgePositions[e * 6 + 2] = pts[i].z;
+    edgePositions[e * 6 + 3] = pts[j].x;
+    edgePositions[e * 6 + 4] = pts[j].y;
+    edgePositions[e * 6 + 5] = pts[j].z;
+
+    // Base color
+    edgeColors[e * 6] = EDGE_BASE_R;
+    edgeColors[e * 6 + 1] = EDGE_BASE_G;
+    edgeColors[e * 6 + 2] = EDGE_BASE_B;
+    edgeColors[e * 6 + 3] = EDGE_BASE_R;
+    edgeColors[e * 6 + 4] = EDGE_BASE_G;
+    edgeColors[e * 6 + 5] = EDGE_BASE_B;
+
+    edgeMeta.push({
+      phase: Math.random() * 10,        // random time offset
+      speed: 0.3 + Math.random() * 0.4, // pulse speed variation
+      duration: 0.8 + Math.random() * 0.4,
+      cooldown: 2.0 + Math.random() * 3.0,
+    });
+  }
+
+  return { nodePositions, nodeColors, nodeSizes, nodePhases, edgePositions, edgeColors, edgeCount, edgeMeta };
+}
+
+// ── Node shaders (these work — proven) ──────────────────────────
 const nodeVert = `
   attribute float aSize;
   attribute float aPhase;
-  attribute vec3  aColor;
 
-  varying vec3  vColor;
+  varying vec3 vColor;
   varying float vAlpha;
 
   uniform float uTime;
   uniform float uDpr;
 
   void main() {
-    vColor = aColor;
-
-    // Soft breath per particle
-    float breath = 0.55 + 0.45 * sin(uTime * 0.35 + aPhase * 6.2831);
+    vColor = color;
+    float breath = 0.55 + 0.45 * sin(uTime * 0.35 + aPhase);
     vAlpha = breath;
-
     vec4 mv = modelViewMatrix * vec4(position, 1.0);
-    gl_PointSize = aSize * uDpr * (160.0 / -mv.z) * (0.8 + 0.2 * breath);
-    gl_Position  = projectionMatrix * mv;
+    gl_PointSize = aSize * uDpr * (150.0 / -mv.z) * (0.8 + 0.2 * breath);
+    gl_Position = projectionMatrix * mv;
   }
 `;
 
 const nodeFrag = `
-  varying vec3  vColor;
+  varying vec3 vColor;
   varying float vAlpha;
 
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-
-    // Tight bright core + soft outer halo
     float core = smoothstep(0.5, 0.02, d);
     float halo = smoothstep(0.5, 0.25, d);
-    float i    = core * 0.85 + halo * 0.25;
-
+    float i = core * 0.85 + halo * 0.25;
     gl_FragColor = vec4(vColor, i * vAlpha * 0.7);
   }
 `;
 
-// ── Shaders: Edges (with electric pulses) ───────────────────────
-const edgeVert = `
-  attribute float aEdgePhase;
-  attribute float aEdgeFrac;
-
-  varying float vFrac;
-  varying float vPhase;
-  varying float vDepth;
-
-  void main() {
-    vFrac  = aEdgeFrac;
-    vPhase = aEdgePhase;
-
-    vec4 mv = modelViewMatrix * vec4(position, 1.0);
-    vDepth  = -mv.z;
-    gl_Position = projectionMatrix * mv;
-  }
-`;
-
-const edgeFrag = `
-  uniform float uTime;
-  uniform vec3  uBaseColor;
-  uniform vec3  uPulseColor;
-
-  varying float vFrac;
-  varying float vPhase;
-  varying float vDepth;
-
-  void main() {
-    // Base edge — always visible, no fog
-    float baseAlpha = 0.18;
-
-    // ── Electric pulse ──
-    // 3s cycle per edge, pulse fires for 1s then rests 2s.
-    float cycle     = mod(uTime * 0.4 + vPhase * 7.3, 3.0);
-    float active    = step(cycle, 1.0);
-    float waveFront = mod(cycle, 1.0);
-    float pulse     = active * exp(-5.0 * (vFrac - waveFront) * (vFrac - waveFront));
-
-    vec3  col   = mix(uBaseColor, uPulseColor, pulse);
-    float alpha = baseAlpha + pulse * 0.82;
-
-    gl_FragColor = vec4(col, alpha);
-  }
-`;
-
-// ── Helpers ─────────────────────────────────────────────────────
-function fibonacciSphere(i, total, radius) {
-  const phi   = Math.acos(-1 + (2 * i) / total);
-  const theta = Math.sqrt(total * Math.PI) * phi;
-  const r     = radius * (0.45 + Math.random() * 0.55);
-  const jitter = 6;
-  return new THREE.Vector3(
-    r * Math.cos(theta) * Math.sin(phi) + (Math.random() - 0.5) * jitter,
-    r * Math.sin(theta) * Math.sin(phi) + (Math.random() - 0.5) * jitter,
-    r * Math.cos(phi)                   + (Math.random() - 0.5) * jitter,
-  );
-}
-
-// Build proximity-based connections (k nearest neighbors)
-function buildEdges(positions, k = 3) {
-  const edges = [];
-  const n = positions.length;
-
-  for (let i = 0; i < n; i++) {
-    // Compute distances to all others
-    const dists = [];
-    for (let j = 0; j < n; j++) {
-      if (i === j) continue;
-      dists.push({ j, d: positions[i].distanceTo(positions[j]) });
-    }
-    dists.sort((a, b) => a.d - b.d);
-
-    // Connect to k nearest (avoid duplicates via i < j only)
-    for (let m = 0; m < Math.min(k, dists.length); m++) {
-      const j = dists[m].j;
-      if (i < j) {
-        edges.push([i, j]);
-      }
-    }
-  }
-  return edges;
-}
-
-// ── Component ───────────────────────────────────────────────────
+// ── Main component ──────────────────────────────────────────────
 export default function KnowledgeGraph() {
-  const groupRef    = useRef(null);
-  const nodMatRef   = useRef(null);
-  const edgeMatRef  = useRef(null);
+  const groupRef = useRef(null);
+  const edgeColorRef = useRef(null);
+  const nodeMatRef = useRef(null);
   const currentSection = useStore(activeSection);
 
-  const { nodePos, nodeSizes, nodePhases, nodeColors, edgePositions, edgePhases, edgeFracs } = useMemo(() => {
-    // ── Generate nodes ──
-    const pts = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
-      pts.push(fibonacciSphere(i, NODE_COUNT, SPHERE_R));
-    }
-
-    const pos    = new Float32Array(NODE_COUNT * 3);
-    const sizes  = new Float32Array(NODE_COUNT);
-    const phases = new Float32Array(NODE_COUNT);
-    const colors = new Float32Array(NODE_COUNT * 3);
-
-    for (let i = 0; i < NODE_COUNT; i++) {
-      pos[i * 3]     = pts[i].x;
-      pos[i * 3 + 1] = pts[i].y;
-      pos[i * 3 + 2] = pts[i].z;
-
-      sizes[i]  = 1.0 + Math.random() * 2.2;
-      phases[i] = Math.random();
-
-      const c = NODE_COLORS[Math.floor(Math.random() * NODE_COLORS.length)];
-      colors[i * 3]     = c.r;
-      colors[i * 3 + 1] = c.g;
-      colors[i * 3 + 2] = c.b;
-    }
-
-    // ── Generate edges (k-NN proximity) ──
-    const edges = buildEdges(pts, 3);
-
-    // For each edge, we need 2 vertices (start & end).
-    // We also need per-vertex attributes: aEdgePhase (same for both verts of an edge)
-    // and aEdgeFrac (0.0 for start, 1.0 for end) so the pulse can travel.
-    const ePos    = new Float32Array(edges.length * 6); // 2 verts × 3 coords
-    const ePhases = new Float32Array(edges.length * 2); // 2 verts × 1 phase
-    const eFracs  = new Float32Array(edges.length * 2); // 2 verts × 1 frac
-
-    for (let e = 0; e < edges.length; e++) {
-      const [i, j] = edges[e];
-      const phase = Math.random();
-
-      // Start vertex
-      ePos[e * 6]     = pts[i].x;
-      ePos[e * 6 + 1] = pts[i].y;
-      ePos[e * 6 + 2] = pts[i].z;
-      // End vertex
-      ePos[e * 6 + 3] = pts[j].x;
-      ePos[e * 6 + 4] = pts[j].y;
-      ePos[e * 6 + 5] = pts[j].z;
-
-      ePhases[e * 2]     = phase;
-      ePhases[e * 2 + 1] = phase;
-
-      eFracs[e * 2]     = 0.0;
-      eFracs[e * 2 + 1] = 1.0;
-    }
-
-    return {
-      nodePos: pos, nodeSizes: sizes, nodePhases: phases, nodeColors: colors,
-      edgePositions: ePos, edgePhases: ePhases, edgeFracs: eFracs,
-    };
-  }, []);
+  const graph = useMemo(buildGraph, []);
 
   const nodeUniforms = useMemo(() => ({
     uTime: { value: 0 },
-    uDpr:  { value: Math.min(window.devicePixelRatio, 2) },
-  }), []);
-
-  const edgeUniforms = useMemo(() => ({
-    uTime:       { value: 0 },
-    uBaseColor:  { value: EDGE_BASE },
-    uPulseColor: { value: EDGE_PULSE },
+    uDpr: { value: Math.min(window.devicePixelRatio, 2) },
   }), []);
 
   useFrame((state, delta) => {
+    // ── Camera fly-through ──
     const target = CONFIG.cameraStops[currentSection] || CONFIG.cameraStops.hero;
-
     tempVec3.set(...target.position);
     state.camera.position.lerp(tempVec3, delta * 1.8);
 
@@ -242,49 +174,94 @@ export default function KnowledgeGraph() {
     state.camera.userData.currentLookAt.lerp(tempLookAt, delta * 1.8);
     state.camera.lookAt(state.camera.userData.currentLookAt);
 
-    // Dreamy slow rotation
+    // Dreamy rotation
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.012;
       groupRef.current.rotation.x += delta * 0.004;
     }
 
+    // ── Animate edge vertex colors (pulse effect) ──
     const t = state.clock.getElapsedTime();
-    if (nodMatRef.current)  nodMatRef.current.uniforms.uTime.value = t;
-    if (edgeMatRef.current) edgeMatRef.current.uniforms.uTime.value = t;
+    if (edgeColorRef.current) {
+      const colors = edgeColorRef.current.array;
+
+      for (let e = 0; e < graph.edgeCount; e++) {
+        const meta = graph.edgeMeta[e];
+        const totalCycle = meta.duration + meta.cooldown;
+        const cycle = ((t * meta.speed + meta.phase) % totalCycle);
+        
+        let pulseIntensity = 0;
+        if (cycle < meta.duration) {
+          // Active pulse — both vertices glow simultaneously
+          const progress = cycle / meta.duration;
+          // Bell curve: peak at middle of duration
+          pulseIntensity = Math.sin(progress * Math.PI);
+        }
+
+        // Lerp between base color and pulse color
+        const r = EDGE_BASE_R + (PULSE_R - EDGE_BASE_R) * pulseIntensity;
+        const g = EDGE_BASE_G + (PULSE_G - EDGE_BASE_G) * pulseIntensity;
+        const b = EDGE_BASE_B + (PULSE_B - EDGE_BASE_B) * pulseIntensity;
+
+        // Both vertices of this edge
+        colors[e * 6]     = r;
+        colors[e * 6 + 1] = g;
+        colors[e * 6 + 2] = b;
+        colors[e * 6 + 3] = r;
+        colors[e * 6 + 4] = g;
+        colors[e * 6 + 5] = b;
+      }
+
+      edgeColorRef.current.needsUpdate = true;
+    }
+
+    // Update node time
+    if (nodeMatRef.current) {
+      nodeMatRef.current.uniforms.uTime.value = t;
+    }
   });
 
   return (
     <group ref={groupRef}>
-      {/* ── Edges with electric pulses ── */}
+      {/* ── Edges: standard LineSegments + vertex colors ── */}
       <lineSegments>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position"   count={edgePositions.length / 3} array={edgePositions} itemSize={3} />
-          <bufferAttribute attach="attributes-aEdgePhase" count={edgePhases.length}        array={edgePhases}    itemSize={1} />
-          <bufferAttribute attach="attributes-aEdgeFrac"  count={edgeFracs.length}         array={edgeFracs}     itemSize={1} />
+          <bufferAttribute
+            attach="attributes-position"
+            count={graph.edgePositions.length / 3}
+            array={graph.edgePositions}
+            itemSize={3}
+          />
+          <bufferAttribute
+            ref={edgeColorRef}
+            attach="attributes-color"
+            count={graph.edgeColors.length / 3}
+            array={graph.edgeColors}
+            itemSize={3}
+          />
         </bufferGeometry>
-        <shaderMaterial
-          ref={edgeMatRef}
-          vertexShader={edgeVert}
-          fragmentShader={edgeFrag}
-          uniforms={edgeUniforms}
+        <lineBasicMaterial
+          vertexColors
           transparent
+          opacity={0.4}
           depthWrite={false}
         />
       </lineSegments>
 
-      {/* ── Glowing nodes ── */}
+      {/* ── Nodes: Points with glow shader ── */}
       <points>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" count={NODE_COUNT} array={nodePos}    itemSize={3} />
-          <bufferAttribute attach="attributes-aSize"    count={NODE_COUNT} array={nodeSizes}  itemSize={1} />
-          <bufferAttribute attach="attributes-aPhase"   count={NODE_COUNT} array={nodePhases} itemSize={1} />
-          <bufferAttribute attach="attributes-aColor"   count={NODE_COUNT} array={nodeColors} itemSize={3} />
+          <bufferAttribute attach="attributes-position" count={NODE_COUNT} array={graph.nodePositions} itemSize={3} />
+          <bufferAttribute attach="attributes-color"    count={NODE_COUNT} array={graph.nodeColors}    itemSize={3} />
+          <bufferAttribute attach="attributes-aSize"    count={NODE_COUNT} array={graph.nodeSizes}     itemSize={1} />
+          <bufferAttribute attach="attributes-aPhase"   count={NODE_COUNT} array={graph.nodePhases}    itemSize={1} />
         </bufferGeometry>
         <shaderMaterial
-          ref={nodMatRef}
+          ref={nodeMatRef}
           vertexShader={nodeVert}
           fragmentShader={nodeFrag}
           uniforms={nodeUniforms}
+          vertexColors
           transparent
           depthWrite={false}
           blending={THREE.AdditiveBlending}
